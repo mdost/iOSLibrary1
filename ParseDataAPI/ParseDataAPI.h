@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CharitySalaries.h"
 
 @interface ParseDataAPI : NSObject
 
 -(NSData *)createConnection:(NSString*)token :(NSString*)regNum;
+-(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum;
 
 
 @end

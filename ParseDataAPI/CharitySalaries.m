@@ -11,6 +11,12 @@
 
 @implementation CharitySalaries
 
+-(void)setNumTop10_1_39999:(NSString *)value{
+    _NumTop10_1_39999 = [value intValue];
+}
 
+-(void)setTotalCompensationOrganization:(NSString *)value{
+    _TotalCompensationOrganization= [value intValue];
+}
 
 @end
