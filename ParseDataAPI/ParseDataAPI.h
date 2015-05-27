@@ -10,4 +10,7 @@
 
 @interface ParseDataAPI : NSObject
 
+-(NSData *)createConnection:(NSString*)token :(NSString*)regNum;
+
+
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9458FCFF1B151A4A00E819FB /* ParseDataAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9458FCFE1B151A4A00E819FB /* ParseDataAPI.h */; };
 		9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD001B151A4A00E819FB /* ParseDataAPI.m */; };
+		9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD121B1619EF00E819FB /* CharitySalaries.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,8 @@
 		9458FD001B151A4A00E819FB /* ParseDataAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseDataAPI.m; sourceTree = "<group>"; };
 		9458FD061B151A4A00E819FB /* ParseDataAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseDataAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9458FD091B151A4A00E819FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9458FD121B1619EF00E819FB /* CharitySalaries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharitySalaries.m; sourceTree = "<group>"; };
+		9458FD141B161A4200E819FB /* CharitySalaries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharitySalaries.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 			children = (
 				9458FCFE1B151A4A00E819FB /* ParseDataAPI.h */,
 				9458FD001B151A4A00E819FB /* ParseDataAPI.m */,
+				9458FD121B1619EF00E819FB /* CharitySalaries.m */,
+				9458FD141B161A4200E819FB /* CharitySalaries.h */,
 			);
 			path = ParseDataAPI;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */,
 				9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +341,7 @@
 				9458FD0E1B151A4A00E819FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9458FD0F1B151A4A00E819FB /* Build configuration list for PBXNativeTarget "ParseDataAPITests" */ = {
 			isa = XCConfigurationList;
@@ -343,6 +350,7 @@
 				9458FD111B151A4A00E819FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
