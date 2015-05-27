@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ParseDataAPI Tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>ParseDataAPI.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>9458FD051B151A4A00E819FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9458FD181B1653EE00E819FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,6 +10,7 @@
 		9458FCFF1B151A4A00E819FB /* ParseDataAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9458FCFE1B151A4A00E819FB /* ParseDataAPI.h */; };
 		9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD001B151A4A00E819FB /* ParseDataAPI.m */; };
 		9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD121B1619EF00E819FB /* CharitySalaries.m */; };
+		9458FD1E1B1653EE00E819FB /* ParseDataAPI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD1D1B1653EE00E819FB /* ParseDataAPI_Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,9 @@
 		9458FD091B151A4A00E819FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9458FD121B1619EF00E819FB /* CharitySalaries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharitySalaries.m; sourceTree = "<group>"; };
 		9458FD141B161A4200E819FB /* CharitySalaries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharitySalaries.h; sourceTree = "<group>"; };
+		9458FD191B1653EE00E819FB /* ParseDataAPI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseDataAPI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9458FD1C1B1653EE00E819FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9458FD1D1B1653EE00E819FB /* ParseDataAPI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseDataAPI_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9458FD161B1653EE00E819FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -58,6 +69,7 @@
 			children = (
 				9458FCFD1B151A4A00E819FB /* ParseDataAPI */,
 				9458FD071B151A4A00E819FB /* ParseDataAPITests */,
+				9458FD1A1B1653EE00E819FB /* ParseDataAPI Tests */,
 				9458FCFC1B151A4A00E819FB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +79,7 @@
 			children = (
 				9458FCFB1B151A4A00E819FB /* libParseDataAPI.a */,
 				9458FD061B151A4A00E819FB /* ParseDataAPITests.xctest */,
+				9458FD191B1653EE00E819FB /* ParseDataAPI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +107,23 @@
 			isa = PBXGroup;
 			children = (
 				9458FD091B151A4A00E819FB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9458FD1A1B1653EE00E819FB /* ParseDataAPI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9458FD1D1B1653EE00E819FB /* ParseDataAPI_Tests.m */,
+				9458FD1B1B1653EE00E819FB /* Supporting Files */,
+			);
+			path = "ParseDataAPI Tests";
+			sourceTree = "<group>";
+		};
+		9458FD1B1B1653EE00E819FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9458FD1C1B1653EE00E819FB /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -135,6 +165,23 @@
 			productReference = 9458FD061B151A4A00E819FB /* ParseDataAPITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9458FD181B1653EE00E819FB /* ParseDataAPI Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9458FD1F1B1653EE00E819FB /* Build configuration list for PBXNativeTarget "ParseDataAPI Tests" */;
+			buildPhases = (
+				9458FD151B1653EE00E819FB /* Sources */,
+				9458FD161B1653EE00E819FB /* Frameworks */,
+				9458FD171B1653EE00E819FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ParseDataAPI Tests";
+			productName = "ParseDataAPI Tests";
+			productReference = 9458FD191B1653EE00E819FB /* ParseDataAPI Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,6 +195,9 @@
 						CreatedOnToolsVersion = 6.0.1;
 					};
 					9458FD051B151A4A00E819FB = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					9458FD181B1653EE00E819FB = {
 						CreatedOnToolsVersion = 6.0.1;
 					};
 				};
@@ -166,12 +216,20 @@
 			targets = (
 				9458FCFA1B151A4A00E819FB /* ParseDataAPI */,
 				9458FD051B151A4A00E819FB /* ParseDataAPITests */,
+				9458FD181B1653EE00E819FB /* ParseDataAPI Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9458FD041B151A4A00E819FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9458FD171B1653EE00E819FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -194,6 +252,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9458FD151B1653EE00E819FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9458FD1E1B1653EE00E819FB /* ParseDataAPI_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +388,43 @@
 			};
 			name = Release;
 		};
+		9458FD201B1653EE00E819FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ParseDataAPI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9458FD211B1653EE00E819FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ParseDataAPI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -351,6 +454,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9458FD1F1B1653EE00E819FB /* Build configuration list for PBXNativeTarget "ParseDataAPI Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9458FD201B1653EE00E819FB /* Debug */,
+				9458FD211B1653EE00E819FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
