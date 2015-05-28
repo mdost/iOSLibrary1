@@ -33,7 +33,7 @@
     NSString *regNum = @"136747276RR0001";
     
     ParseDataAPI *parser= [[ParseDataAPI alloc] init];
-    CharitySalaries *cs = [parser getCharitySalaries:token :regNum]
+    CharitySalaries *cs = [parser getCharitySalaries:token :regNum];
     NSLog("hello");
 }
 

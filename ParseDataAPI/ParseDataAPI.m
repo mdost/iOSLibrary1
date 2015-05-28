@@ -43,8 +43,30 @@
     
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charitySalaries.salaryData"];
     CharitySalaries *cs = [[CharitySalaries alloc] init];
-    cs.NumTop10_1_39999 = [response valueForKey:@"NumTop10_1_39999"];
-    cs.TotalCompensationOrganization=[response valueForKey:@"TotalCompensationOrganization"];
+    
+    NSString *NumTop10_1_39999 = [response valueForKey:@"NumTop10_1_39999"];
+    NSString *NumTop10_40K_79999 = [response valueForKey:@"NumTop10_40K_79999"];
+    NSString *NumTop10_80K_119999 = [response valueForKey:@"NumTop10_80K_119999"];
+    NSString *NumTop10_120K_159999 = [response valueForKey:@"NumTop10_120K_159999"];
+    NSString *NumTop10_160K_199999 = [response valueForKey:@"NumTop10_160K_199999"];
+    NSString *NumTop10_200K_249999 = [response valueForKey:@"NumTop10_200K_249999"];
+    NSString *NumTop10_250K_299999 = [response valueForKey:@"NumTop10_250K_299999"];
+    NSString *NumTop10_300K_349999 = [response valueForKey:@"NumTop10_300K_349999"];
+    NSString *NumTop10_350K_Plus = [response valueForKey:@"NumTop10_350K_Plus"];
+    NSString *TotalCompensationPartTimeEmployees = [response valueForKey:@"TotalCompensationPartTimeEmployees"];
+    NSString *TotalCompensationOrganization=[response valueForKey:@"TotalCompensationOrganization"];
+    
+    [cs setNumTop10_1_39999:NumTop10_1_39999];
+    [cs setNumTop10_40K_79999:NumTop10_40K_79999];
+    [cs setNumTop10_80K_119999:NumTop10_80K_119999];
+    [cs setNumTop10_120K_159999:NumTop10_120K_159999];
+    [cs setNumTop10_160K_199999:NumTop10_160K_199999];
+    [cs setNumTop10_200K_249999:NumTop10_200K_249999];
+    [cs setNumTop10_250K_299999:NumTop10_250K_299999];
+    [cs setNumTop10_300K_349999:NumTop10_300K_349999];
+    [cs setNumTop10_350K_Plus:NumTop10_350K_Plus];
+    [cs setTotalCompensationPartTimeEmployees:TotalCompensationPartTimeEmployees];
+    [cs setTotalCompensationOrganization:TotalCompensationOrganization];
     
     return cs;
 }
