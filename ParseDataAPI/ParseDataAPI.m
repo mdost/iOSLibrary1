@@ -19,7 +19,7 @@
     }
     
     [url appendString:token];
-    [url appendFormat:@"&regNum=",regNum];
+    [url appendFormat:@"&regNum=%@",regNum];
     [url appendString:@"&format=json"];
     
     //create connection and retrieve data.
