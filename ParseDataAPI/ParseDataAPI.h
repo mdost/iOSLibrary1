@@ -11,8 +11,8 @@
 
 @interface ParseDataAPI : NSObject
 
--(NSData *)createConnection:(NSString*)token :(NSString*)regNum;
+-(NSData *)createConnection:(NSMutableString *)url;
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum;
-
+-(NSMutableArray *)getCharityType:(NSString *)token;
 
 @end
