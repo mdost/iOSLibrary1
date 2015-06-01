@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "-getCharitySalaries::"
+            landmarkName = "-getCharityType:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

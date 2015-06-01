@@ -21,11 +21,38 @@
     return data;
 }
 
--(NSMutableArray *)getCharityType:(NSString *)token{
-    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityTypes&token="];
-    
+-(NSMutableArray *)getCharityProject:(NSString *)token :(NSString *)regNum{
     if(token == nil)
         return nil;
+
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityTypes&token="];
+    
+    [url appendString:token];
+    [url appendFormat:@"&regNum=%@",regNum];
+    [url appendString:@"&format=json"];
+
+    NSData *data = [self createConnection:url];
+    NSError *error=nil;
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityProjects.project"];
+    NSMutableArray *charityProject;
+    
+    for(id key in response){
+        charityProject= [[NSMutableArray alloc] init];
+        NSLog(@"key= %@", key);
+    }
+    
+    
+    return charityProject;
+}
+
+-(NSMutableArray *)getCharityType:(NSString *)token{
+    if(token == nil)
+        return nil;
+
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityTypes&token="];
+    
     [url appendString:token];
     [url appendString:@"&format=json"];
     

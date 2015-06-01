@@ -11,17 +11,17 @@
 
 @interface CharitySalaries: NSObject
 
-@property int NumTop10_1_39999;
-@property int NumTop10_40K_79999;
-@property int NumTop10_80K_119999;
-@property int NumTop10_120K_159999;
-@property int NumTop10_160K_199999;
-@property int NumTop10_200K_249999;
-@property int NumTop10_250K_299999;
-@property int NumTop10_300K_349999;
-@property int NumTop10_350K_Plus;
-@property int TotalCompensationPartTimeEmployees;
-@property int TotalCompensationOrganization;
+@property (nonatomic) int NumTop10_1_39999;
+@property (nonatomic) int NumTop10_40K_79999;
+@property (nonatomic) int NumTop10_80K_119999;
+@property (nonatomic) int NumTop10_120K_159999;
+@property (nonatomic) int NumTop10_160K_199999;
+@property (nonatomic) int NumTop10_200K_249999;
+@property (nonatomic) int NumTop10_250K_299999;
+@property (nonatomic) int NumTop10_300K_349999;
+@property (nonatomic) int NumTop10_350K_Plus;
+@property (nonatomic) int TotalCompensationPartTimeEmployees;
+@property (nonatomic) int TotalCompensationOrganization;
 
 -(void)setNumTop10_1_39999:(NSString *)value;
 -(void)setNumTop10_40K_79999:(NSString *)value;

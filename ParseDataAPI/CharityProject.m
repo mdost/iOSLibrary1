@@ -10,6 +10,10 @@
 
 @implementation CharityProject
 
+-(void)setDateModified:(NSString *)DateModified{
+    
+}
+
 -(void)setVolHours:(NSString *)VolHours{
     int value = [VolHours intValue];
     _VolHours =value;

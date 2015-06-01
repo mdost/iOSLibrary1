@@ -10,13 +10,13 @@
 
 @interface CharityProject : NSObject
 
-@property NSDate *DateModified;
+@property (nonatomic) NSDate *DateModified;
 @property NSString *ProjectName;
-@property int VolHours;
-@property double StaffSal;
-@property double MaterialCost;
-@property double Overhead;
-@property double OtherCosts;
+@property (nonatomic) int VolHours;
+@property (nonatomic) double StaffSal;
+@property (nonatomic) double MaterialCost;
+@property (nonatomic) double Overhead;
+@property (nonatomic) double OtherCosts;
 
 -(void)setDateModified:(NSString *)DateModified;
 -(void)setVolHours:(NSString *)VolHours;

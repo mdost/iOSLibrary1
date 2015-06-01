@@ -14,5 +14,6 @@
 -(NSData *)createConnection:(NSMutableString *)url;
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum;
 -(NSMutableArray *)getCharityType:(NSString *)token;
+-(NSMutableArray *)getCharityProject:(NSString*)token :(NSString *)regNum;
 
 @end
