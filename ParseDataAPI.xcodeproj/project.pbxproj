@@ -15,6 +15,7 @@
 		94ED619E1B1E032C0045BE29 /* ProvState.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED619D1B1E032C0045BE29 /* ProvState.m */; };
 		94ED61A11B1E047B0045BE29 /* CharityFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61A01B1E047B0045BE29 /* CharityFiles.m */; };
 		94ED61A71B1E08860045BE29 /* CharityDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61A61B1E08860045BE29 /* CharityDetails.m */; };
+		94ED61AD1B1E44300045BE29 /* FinancialDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61AC1B1E44300045BE29 /* FinancialDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,8 @@
 		94ED61A01B1E047B0045BE29 /* CharityFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityFiles.m; sourceTree = "<group>"; };
 		94ED61A51B1E08860045BE29 /* CharityDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityDetails.h; sourceTree = "<group>"; };
 		94ED61A61B1E08860045BE29 /* CharityDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityDetails.m; sourceTree = "<group>"; };
+		94ED61AB1B1E44300045BE29 /* FinancialDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinancialDetails.h; sourceTree = "<group>"; };
+		94ED61AC1B1E44300045BE29 /* FinancialDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinancialDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				94ED61A01B1E047B0045BE29 /* CharityFiles.m */,
 				94ED61A51B1E08860045BE29 /* CharityDetails.h */,
 				94ED61A61B1E08860045BE29 /* CharityDetails.m */,
+				94ED61AB1B1E44300045BE29 /* FinancialDetails.h */,
+				94ED61AC1B1E44300045BE29 /* FinancialDetails.m */,
 			);
 			path = ParseDataAPI;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9419FD4A1B18CCE900756D68 /* CharityProject.m in Sources */,
+				94ED61AD1B1E44300045BE29 /* FinancialDetails.m in Sources */,
 				9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */,
 				94ED619E1B1E032C0045BE29 /* ProvState.m in Sources */,
 				9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */,
