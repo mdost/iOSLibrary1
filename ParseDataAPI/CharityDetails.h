@@ -25,7 +25,7 @@
 @property NSString * WhatIsNeeded;
 @property NSString * Notes;
 @property NSString * CharitySubType;
-@property int UpdateStatus;
+@property (nonatomic) int UpdateStatus;
 @property int DonorType;
 @property NSString * OrganizationSize;
 @property double OperatingBudget;
@@ -82,6 +82,21 @@
 @property NSString * Comments;
 @property NSString * ExecutiveDirector;
 
+-(void)setTrueCharityValue:(NSString *)TrueCharityValue;
+-(void)setCodeOfFundraising:(NSString *)CodeOfFundraising;
+-(void)setHasCodeOfEthicalFundraising:(NSString *)HasCodeOfEthicalFundraising;
+-(void)setHasDonorBillOfRights:(NSString *)HasDonorBillOfRights;
+-(void)setHaveBoardGovMan:(NSString *)HaveBoardGovMan;
+-(void)setHaveProcess:(NSString *)HaveProcess;
+-(void)setHaveStrategicPlan:(NSString *)HaveStrategicPlan;
+-(void)setNeedEmerFund:(NSString *)NeedEmerFund;
+-(void)setFundraisingCost:(NSString *)FundraisingCost;
+-(void)setGrossFund:(NSString *)GrossFund;
+-(void)setRealCharityValue:(NSString *)RealCharityValue;
+-(void)setCostOfFundraising:(NSString *)CostOfFundraising;
+-(void)setUpdateStatus:(NSString *)UpdateStatus;
+-(void)setDonorType:(NSString *)DonorType;
+-(void)setOperatingBudget:(NSString *)OperatingBudget;
 -(instancetype)initWithParameters:(NSDictionary *)parameters;
 
 @end
