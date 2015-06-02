@@ -82,21 +82,21 @@
 @property NSString * Comments;
 @property NSString * ExecutiveDirector;
 
--(void)setTrueCharityValue:(NSString *)TrueCharityValue;
--(void)setCodeOfFundraising:(NSString *)CodeOfFundraising;
--(void)setHasCodeOfEthicalFundraising:(NSString *)HasCodeOfEthicalFundraising;
--(void)setHasDonorBillOfRights:(NSString *)HasDonorBillOfRights;
--(void)setHaveBoardGovMan:(NSString *)HaveBoardGovMan;
--(void)setHaveProcess:(NSString *)HaveProcess;
--(void)setHaveStrategicPlan:(NSString *)HaveStrategicPlan;
--(void)setNeedEmerFund:(NSString *)NeedEmerFund;
--(void)setFundraisingCost:(NSString *)FundraisingCost;
--(void)setGrossFund:(NSString *)GrossFund;
--(void)setRealCharityValue:(NSString *)RealCharityValue;
--(void)setCostOfFundraising:(NSString *)CostOfFundraising;
--(void)setUpdateStatus:(NSString *)UpdateStatus;
--(void)setDonorType:(NSString *)DonorType;
--(void)setOperatingBudget:(NSString *)OperatingBudget;
+-(void)setTrueCharityValues:(NSString *)TrueCharityValue;
+-(void)setCodeOfFundraisings:(NSString *)CodeOfFundraising;
+-(void)setHasCodeOfEthicalFundraisings:(NSString *)HasCodeOfEthicalFundraising;
+-(void)setHasDonorBillOfRightss:(NSString *)HasDonorBillOfRights;
+-(void)setHaveBoardGovMans:(NSString *)HaveBoardGovMan;
+-(void)setHaveProcesss:(NSString *)HaveProcess;
+-(void)setHaveStrategicPlans:(NSString *)HaveStrategicPlan;
+-(void)setNeedEmerFunds:(NSString *)NeedEmerFund;
+-(void)setFundraisingCosts:(NSString *)FundraisingCost;
+-(void)setGrossFunds:(NSString *)GrossFund;
+-(void)setRealCharityValues:(NSString *)RealCharityValue;
+-(void)setCostOfFundraisings:(NSString *)CostOfFundraising;
+-(void)setUpdateStatuss:(NSString *)UpdateStatus;
+-(void)setDonorTypes:(NSString *)DonorType;
+-(void)setOperatingBudgets:(NSString *)OperatingBudget;
 -(instancetype)initWithParameters:(NSDictionary *)parameters;
 
 @end

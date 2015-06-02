@@ -72,51 +72,52 @@
     return self;
 }
 
--(void)setTrueCharityValue:(NSString *)TrueCharityValue{
-    
+//setters
+-(void)setTrueCharityValues:(NSString *)TrueCharityValue{
+    _TrueCharityValue=[TrueCharityValue doubleValue];
 }
 
--(void)setCodeOfFundraising:(NSString *)CodeOfFundraising{
-    
+-(void)setCodeOfFundraisings:(NSString *)CodeOfFundraising{
+    _CodeOfFundraising = [CodeOfFundraising boolValue];
 }
--(void)setHasCodeOfEthicalFundraising:(NSString *)HasCodeOfEthicalFundraising{
-    
+-(void)setHasCodeOfEthicalFundraisings:(NSString *)HasCodeOfEthicalFundraising{
+    _HasCodeOfEthicalFundraising=[HasCodeOfEthicalFundraising boolValue];
 }
--(void)setHasDonorBillOfRights:(NSString *)HasDonorBillOfRights{
-    
+-(void)setHasDonorBillOfRightss:(NSString *)HasDonorBillOfRights{
+    _HasDonorBillOfRights= [HasDonorBillOfRights boolValue];
 }
--(void)setHaveBoardGovMan:(NSString *)HaveBoardGovMan{
-    
+-(void)setHaveBoardGovMans:(NSString *)HaveBoardGovMan{
+    _HaveBoardGovMan= [HaveBoardGovMan boolValue];
 }
--(void)setHaveProcess:(NSString *)HaveProcess{
-    
+-(void)setHaveProcesss:(NSString *)HaveProcess{
+    _HaveProcess= [HaveProcess boolValue];
 }
--(void)setHaveStrategicPlan:(NSString *)HaveStrategicPlan{
-    
+-(void)setHaveStrategicPlans:(NSString *)HaveStrategicPlan{
+    _HaveStrategicPlan=[HaveStrategicPlan boolValue];
 }
--(void)setNeedEmerFund:(NSString *)NeedEmerFund{
-    
+-(void)setNeedEmerFunds:(NSString *)NeedEmerFund{
+    _NeedEmerFund = [NeedEmerFund boolValue];
 }
--(void)setFundraisingCost:(NSString *)FundraisingCost{
-    
+-(void)setFundraisingCosts:(NSString *)FundraisingCost{
+    _FundraisingCost =[FundraisingCost doubleValue];
 }
--(void)setGrossFund:(NSString *)GrossFund{
-    
+-(void)setGrossFunds:(NSString *)GrossFund{
+    _GrossFund = [GrossFund doubleValue];
 }
--(void)setRealCharityValue:(NSString *)RealCharityValue{
-    
+-(void)setRealCharityValues:(NSString *)RealCharityValue{
+    _RealCharityValue = [RealCharityValue doubleValue];
 }
--(void)setCostOfFundraising:(NSString *)CostOfFundraising{
-    
+-(void)setCostOfFundraisings:(NSString *)CostOfFundraising{
+    _CostOfFundraising = [CostOfFundraising doubleValue];
 }
--(void)setUpdateStatus:(NSString *)UpdateStatus{
-    
+-(void)setUpdateStatuss:(NSString *)UpdateStatus{
+    _UpdateStatus= [UpdateStatus intValue];
 }
--(void)setDonorType:(NSString *)DonorType{
-    
+-(void)setDonorTypes:(NSString *)DonorType{
+    _DonorType = [DonorType intValue];
 }
--(void)setOperatingBudget:(NSString *)OperatingBudget{
-    
+-(void)setOperatingBudgets:(NSString *)OperatingBudget{
+    _OperatingBudget=[OperatingBudget doubleValue];
 }
 
 @end
