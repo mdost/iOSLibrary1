@@ -24,7 +24,7 @@
     return data;
 }
 
--(NSMutableArray *)getCharityDetails:(NSString *)token :(NSString *)regNum{
+-(CharityDetails *)getCharityDetails:(NSString *)token :(NSString *)regNum{
     if(token == nil)
         return nil;
     
@@ -38,14 +38,9 @@
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
+    CharityDetails *cd = [[CharityDetails alloc] initWithParameters:response];
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(NSDictionary *i in response){
-        CharityDetails *cd = [[CharityDetails alloc] initWithParameters:i];
-        [array addObject:cd];
-    }
-
-    return array;
+    return cd;
 }
 
 -(NSMutableArray *)getCharityFiles:(NSString *)token :(NSString *)regNum{

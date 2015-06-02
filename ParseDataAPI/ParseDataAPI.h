@@ -22,6 +22,6 @@
 -(NSMutableArray *)getCharityProject:(NSString*)token :(NSString *)regNum;
 -(NSMutableArray *)getProvState:(NSString *)token :(NSString *)country;
 -(NSMutableArray *)getCharityFiles:(NSString *)token :(NSString *)regNum;
--(NSMutableArray *)getCharityDetails:(NSString *)token :(NSString *)regNum;
+-(CharityDetails *)getCharityDetails:(NSString *)token :(NSString *)regNum;
 
 @end

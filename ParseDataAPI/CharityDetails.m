@@ -14,74 +14,75 @@
     self = [super init];
     
     if (self) {
-        _CharitableStatus = parameters[@"CharitableStatus"];
-        _CharityAddress=parameters[@"CharityAddress"];
-        _CharityCity=parameters[@"CharityCity"];
-        _CharityCountry=parameters[@"CharityCountry"];
-        _CharityEmail=parameters[@"CharityEmail"];
-        _CharityFax=parameters[@"CharityFax"];
-        _CharityIntelligenceURL=parameters[@"CharityIntelligenceURL"];
-        _CharityName=parameters[@"CharityName"];
-        _CharityOppName=parameters[@"CharityOppName"];
-        _CharityPhone1=parameters[@"CharityPhone1"];
-        _CharityPhone2=parameters[@"CharityPhone2"];
-        _CharityPostalCode=parameters[@"CharityPostalCode"];
-        _CharityProvState=parameters[@"CharityProvState"];
-        _CharitySize=parameters[@"CharitySize"];
-        _CharitySubType=parameters[@"CharitySubType"];
-        _CharityType=parameters[@"CharityType"];
-        _CharityUrl=parameters[@"CharityUrl"];
-        _Comments=parameters[@"Comments"];
-        _Competitors=parameters[@"Competitors"];
-        _DateOfStatus=parameters[@"DateOfStatus"];
-        _MajorDonors=parameters[@"MajorDonors"];
-        _MissionStatement=parameters[@"MissionStatement"];
-        _UniqueBlurb=parameters[@"UniqueBlurb"];
-        _EmerFundDescrip=parameters[@"EmerFundDescrip"];
-        _ExecutiveDirector=parameters[@"ExecutiveDirector"];
-        _ExistBlurb=parameters[@"ExistBlurb"];
-        _WhatIsNeeded=parameters[@"WhatIsNeeded"];
-        _Notes=parameters[@"Notes"];
-        _NumOfStaff=parameters[@"NumOfStaff"];
-        _NumOfVolunteers=parameters[@"NumOfVolunteers"];
-        _OfferingsDifferedDescrip=parameters[@"OfferingsDifferedDescrip"];
-        _OperatingBudgetYear1=parameters[@"OperatingBudgetYear1"];
-        _OperatingBudgetYear2=parameters[@"OperatingBudgetYear2"];
-        _OperatingBudgetYear3=parameters[@"OperatingBudgetYear3"];
-        _OrganizationSize=parameters[@"OrganizationSize"];
-        _OverheadExpensesDescription=parameters[@"OverheadExpensesDescription"];
-        _OverheadExpensesPercent=parameters[@"OverheadExpensesPercent"];
-        _PeopleImpactedByOrganization=parameters[@"PeopleImpactedByOrganization"];
-        _PeopleImpactedByPrograms=parameters[@"PeopleImpactedByPrograms"];
-        _PublicPerception=parameters[@"PublicPerception"];
-        _PressReleases=parameters[@"PressReleases"];
-        _ProcessDescrip=parameters[@"ProcessDescrip"];
-        _ProgramDescription=parameters[@"ProgramDescription"];
-        _KeyIssuesDescrip=parameters[@"KeyIssuesDescrip"];
-        _KeyIssuesPercent=parameters[@"KeyIssuesPercent"];
-        _Keywords=parameters[@"Keywords"];
-        _LogoFilename=parameters[@"LogoFilename"];
-        _HasCodeOfEthicalFundraising=parameters[@"HasCodeOfEthicalFundraising"];
-        _HowOfferingsDiffered=parameters[@"HowOfferingsDiffered"];
-        _IndividualPrograms=parameters[@"IndividualPrograms"];
-        _InKindDonDescrip=parameters[@"InKindDonDescrip"];
+        _CharitableStatus = [parameters valueForKey:@"CharitableStatus"];
+        _CharityAddress=[parameters valueForKey:@"CharityAddress"];
+        _CharityCity=[parameters valueForKey:@"CharityCity"];
+        _CharityCountry= [parameters valueForKey:@"CharityCountry"];
+        _CharityEmail=[parameters valueForKey:@"CharityEmail"];
+        _CharityFax=[parameters valueForKey:@"CharityFax"];
+        _CharityIntelligenceURL=[parameters valueForKey:@"CharityIntelligenceURL"];
+        _CharityName=[parameters valueForKey:@"CharityName"];
+        _CharityOppName=[parameters valueForKey:@"CharityOppName"];
+        _CharityPhone1=[parameters valueForKey:@"CharityPhone1"];
+        _CharityPhone2=[parameters valueForKey:@"CharityPhone2"];
+        _CharityPostalCode=[parameters valueForKey:@"CharityPostalCode"];
+        _CharityProvState=[parameters valueForKey:@"CharityProvState"];
+        _CharitySize=[parameters valueForKey:@"CharitySize"];
+        _CharitySubType=[parameters valueForKey:@"CharitySubType"];
+        _CharityType=[parameters valueForKey:@"CharityType"];
+        _CharityUrl=[parameters valueForKey:@"CharityUrl"];
+        _Comments=[parameters valueForKey:@"Comments"];
+        _Competitors=[parameters valueForKey:@"Competitors"];
+        _DateOfStatus=[parameters valueForKey:@"DateOfStatus"];
+        _MajorDonors=[parameters valueForKey:@"MajorDonors"];
+        _MissionStatement=[parameters valueForKey:@"MissionStatement"];
+        _UniqueBlurb=[parameters valueForKey:@"UniqueBlurb"];
+        _EmerFundDescrip=[parameters valueForKey:@"EmerFundDescrip"];
+        _ExecutiveDirector=[parameters valueForKey:@"ExecutiveDirector"];
+        _ExistBlurb=[parameters valueForKey:@"ExistBlurb"];
+        _WhatIsNeeded=[parameters valueForKey:@"WhatIsNeeded"];
+        _Notes=[parameters valueForKey:@"Notes"];
+        _NumOfStaff=[parameters valueForKey:@"NumOfStaff"];
+        _Description=[parameters valueForKey:@"Description"];
+        _NumOfVolunteers=[parameters valueForKey:@"NumOfVolunteers"];
+        _OfferingsDifferedDescrip=[parameters valueForKey:@"OfferingsDifferedDescrip"];
+        _OperatingBudgetYear1=[parameters valueForKey:@"OperatingBudgetYear1"];
+        _OperatingBudgetYear2=[parameters valueForKey:@"OperatingBudgetYear2"];
+        _OperatingBudgetYear3=[parameters valueForKey:@"OperatingBudgetYear3"];
+        _OrganizationSize=[parameters valueForKey:@"OrganizationSize"];
+        _OverheadExpensesDescription=[parameters valueForKey:@"OverheadExpensesDescription"];
+        _OverheadExpensesPercent=[parameters valueForKey:@"OverheadExpensesPercent"];
+        _PeopleImpactedByOrganization=[parameters valueForKey:@"PeopleImpactedByOrganization"];
+        _PeopleImpactedByPrograms=[parameters valueForKey:@"PeopleImpactedByPrograms"];
+        _PublicPerception=[parameters valueForKey:@"PublicPerception"];
+        _PressReleases=[parameters valueForKey:@"PressReleases"];
+        _ProcessDescrip=[parameters valueForKey:@"ProcessDescrip"];
+        _ProgramDescription=[parameters valueForKey:@"ProgramDescription"];
+        _KeyIssuesDescrip=[parameters valueForKey:@"KeyIssuesDescrip"];
+        _KeyIssuesPercent=[parameters valueForKey:@"KeyIssuesPercent"];
+        _Keywords=[parameters valueForKey:@"Keywords"];
+        _LogoFilename=[parameters valueForKey:@"LogoFilename"];
+        _HasCodeOfEthicalFundraising=[parameters valueForKey:@"HasCodeOfEthicalFundraising"];
+        _HowOfferingsDiffered=[parameters valueForKey:@"HowOfferingsDiffered"];
+        _IndividualPrograms=[parameters valueForKey:@"IndividualPrograms"];
+        _InKindDonDescrip=[parameters valueForKey:@"InKindDonDescrip"];
         
-        [self setTrueCharityValues:parameters[@"TrueCharityValue"]];
-        [self setCodeOfFundraisings:parameters[@"CodeOfFundraising"]];
-        [self setCostOfFundraisings:parameters[@"CostOfFundraising"]];
-        [self setHasDonorBillOfRightss:parameters[@"HasDonorBillOfRights"]];
-        [self setHasCodeOfEthicalFundraisings:parameters[@"HasCodeOfEthicalFundraising"]];
-        [self setHaveBoardGovMans:parameters[@"HaveBoardGovMan"]];
-        [self setNeedEmerFunds:parameters[@"NeedEmerFund"]];
-        [self setHaveStrategicPlans:parameters[@"HaveStrategicPlan"]];
-        [self setFundraisingCosts:parameters[@"FundraisingCost"]];
-        [self setGrossFunds:parameters[@"GrossFund"]];
-        [self setRealCharityValues:parameters[@"RealCharityValue"]];
-        [self setUpdateStatuss:parameters[@"UpdateStatus"]];
-        [self setDonorTypes:parameters[@"DonorType"]];
-        [self setOperatingBudgets:parameters[@"OperatingBudget"]];
-        [self setHaveProcesss:parameters[@"HaveProcess"]];
-
+        [self setTrueCharityValues:[parameters valueForKey:@"TrueCharityValue"]];
+        [self setCodeOfFundraisings:[parameters valueForKey:@"CodeOfFundraising"]];
+        [self setCostOfFundraisings:[parameters valueForKey:@"CostOfFundraising"]];
+        [self setHasDonorBillOfRightss:[parameters valueForKey:@"HasDonorBillOfRights"]];
+        [self setHasCodeOfEthicalFundraisings:[parameters valueForKey:@"HasCodeOfEthicalFundraising"]];
+        [self setHaveBoardGovMans:[parameters valueForKey:@"HaveBoardGovMan"]];
+        [self setNeedEmerFunds:[parameters valueForKey:@"NeedEmerFund"]];
+        [self setHaveStrategicPlans:[parameters valueForKey:@"HaveStrategicPlan"]];
+        [self setFundraisingCosts:[parameters valueForKey:@"FundraisingCost"]];
+        [self setGrossFunds:[parameters valueForKey:@"GrossFund"]];
+        [self setRealCharityValues:[parameters valueForKey:@"RealCharityValue"]];
+        [self setUpdateStatuss:[parameters valueForKey:@"UpdateStatus"]];
+        [self setDonorTypes:[parameters valueForKey:@"DonorType"]];
+        [self setOperatingBudgets:[parameters valueForKey:@"OperatingBudget"]];
+        [self setHaveProcesss:[parameters valueForKey:@"HaveProcess"]];
+        
     }
     
     return self;
@@ -93,25 +94,46 @@
 }
 
 -(void)setCodeOfFundraisings:(NSString *)CodeOfFundraising{
-    _CodeOfFundraising = [CodeOfFundraising boolValue];
+    if(CodeOfFundraising == (id)[NSNull null]){
+        _CodeOfFundraising = nil;
+    }else
+        _CodeOfFundraising = [CodeOfFundraising boolValue];
 }
 -(void)setHasCodeOfEthicalFundraisings:(NSString *)HasCodeOfEthicalFundraising{
-    _HasCodeOfEthicalFundraising=[HasCodeOfEthicalFundraising boolValue];
+    if(HasCodeOfEthicalFundraising == (id)[NSNull null]){
+        _HasCodeOfEthicalFundraising = nil;
+    }else
+        _HasCodeOfEthicalFundraising=[HasCodeOfEthicalFundraising boolValue];
 }
 -(void)setHasDonorBillOfRightss:(NSString *)HasDonorBillOfRights{
-    _HasDonorBillOfRights= [HasDonorBillOfRights boolValue];
+    if(HasDonorBillOfRights == (id)[NSNull null]){
+        _HasDonorBillOfRights = nil;
+    }else
+        _HasDonorBillOfRights= [HasDonorBillOfRights boolValue];
 }
 -(void)setHaveBoardGovMans:(NSString *)HaveBoardGovMan{
-    _HaveBoardGovMan= [HaveBoardGovMan boolValue];
+    if(HaveBoardGovMan == (id)[NSNull null]){
+        _HaveBoardGovMan = nil;
+    }else
+        _HaveBoardGovMan= [HaveBoardGovMan boolValue];
 }
 -(void)setHaveProcesss:(NSString *)HaveProcess{
-    _HaveProcess= [HaveProcess boolValue];
+    if(HaveProcess == (id)[NSNull null]){
+        _HaveProcess = nil;
+    }else
+        _HaveProcess= [HaveProcess boolValue];
 }
 -(void)setHaveStrategicPlans:(NSString *)HaveStrategicPlan{
-    _HaveStrategicPlan=[HaveStrategicPlan boolValue];
+    if(HaveStrategicPlan == (id)[NSNull null]){
+        _HaveStrategicPlan = nil;
+    }else
+        _HaveStrategicPlan=[HaveStrategicPlan boolValue];
 }
 -(void)setNeedEmerFunds:(NSString *)NeedEmerFund{
-    _NeedEmerFund = [NeedEmerFund boolValue];
+    if(NeedEmerFund == (id)[NSNull null]){
+        _NeedEmerFund = nil;
+    }else
+        _NeedEmerFund = [NeedEmerFund boolValue];
 }
 -(void)setFundraisingCosts:(NSString *)FundraisingCost{
     _FundraisingCost =[FundraisingCost doubleValue];
