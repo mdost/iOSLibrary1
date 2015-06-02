@@ -24,6 +24,25 @@
     return data;
 }
 
+-(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj{
+    if(token == nil)
+        return nil;
+    
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getFinancialDetails&token="];
+    [url appendString:token];
+    [url appendFormat:@"&Amount=%@",obj.amount];
+    [url appendString:@"&format=json"];
+    
+    NSData *data = [self createConnection:url];
+    NSError *error=nil;
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.financialDetails.financialData"];
+    DonationURL *du = [[DonationURL alloc] initWithParameters:response];
+    
+    return du;
+}
+
 -(NSMutableArray*)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString *)NumPerPage :(NSString *)charitySize :(NSString *)charityType :(NSString *)keyword :(NSString *)country :(NSString *)provState{
     if(token == nil)
         return nil;
