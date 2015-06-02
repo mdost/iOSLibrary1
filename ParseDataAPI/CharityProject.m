@@ -10,6 +10,22 @@
 
 @implementation CharityProject
 
+-(instancetype)initWithParameters:(NSDictionary *)parameters{
+    self = [super init];
+    
+    if(self){
+        _ProjectName = parameters[@"ProjectName"];
+        _DateModified = parameters[@"DateModified"];
+        [self setMaterialCost:parameters[@"MaterialCost"]];
+        [self setVolHours:parameters[@"VolHours"]];
+        [self setStaffSal:parameters[@"StaffSal"]];
+        [self setOverhead:parameters[@"Overhead"]];
+        [self setOtherCosts:parameters[@"OtherCosts"]];
+    }
+    
+    return self;
+}
+
 -(void)setDateModified:(NSString *)DateModified{
     
 }

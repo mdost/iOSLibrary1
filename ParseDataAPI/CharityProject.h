@@ -10,7 +10,7 @@
 
 @interface CharityProject : NSObject
 
-@property (nonatomic) NSDate *DateModified;
+@property (nonatomic) NSString *DateModified;
 @property NSString *ProjectName;
 @property (nonatomic) int VolHours;
 @property (nonatomic) double StaffSal;
@@ -24,5 +24,6 @@
 -(void)setMaterialCost:(NSString *)MaterialCost;
 -(void)setOverhead:(NSString *)Overhead;
 -(void)setOtherCosts:(NSString *)OtherCosts;
+-(instancetype)initWithParameters:(NSDictionary *)parameters;
 
 @end

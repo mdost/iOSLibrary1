@@ -12,6 +12,9 @@
 		9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD001B151A4A00E819FB /* ParseDataAPI.m */; };
 		9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD121B1619EF00E819FB /* CharitySalaries.m */; };
 		9458FD1E1B1653EE00E819FB /* ParseDataAPI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9458FD1D1B1653EE00E819FB /* ParseDataAPI_Tests.m */; };
+		94ED619E1B1E032C0045BE29 /* ProvState.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED619D1B1E032C0045BE29 /* ProvState.m */; };
+		94ED61A11B1E047B0045BE29 /* CharityFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61A01B1E047B0045BE29 /* CharityFiles.m */; };
+		94ED61A71B1E08860045BE29 /* CharityDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61A61B1E08860045BE29 /* CharityDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +43,12 @@
 		9458FD191B1653EE00E819FB /* ParseDataAPI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseDataAPI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9458FD1C1B1653EE00E819FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9458FD1D1B1653EE00E819FB /* ParseDataAPI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseDataAPI_Tests.m; sourceTree = "<group>"; };
+		94ED619C1B1E032C0045BE29 /* ProvState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvState.h; sourceTree = "<group>"; };
+		94ED619D1B1E032C0045BE29 /* ProvState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvState.m; sourceTree = "<group>"; };
+		94ED619F1B1E047B0045BE29 /* CharityFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityFiles.h; sourceTree = "<group>"; };
+		94ED61A01B1E047B0045BE29 /* CharityFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityFiles.m; sourceTree = "<group>"; };
+		94ED61A51B1E08860045BE29 /* CharityDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityDetails.h; sourceTree = "<group>"; };
+		94ED61A61B1E08860045BE29 /* CharityDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +105,12 @@
 				9458FD141B161A4200E819FB /* CharitySalaries.h */,
 				9419FD481B18CCE900756D68 /* CharityProject.h */,
 				9419FD491B18CCE900756D68 /* CharityProject.m */,
+				94ED619C1B1E032C0045BE29 /* ProvState.h */,
+				94ED619D1B1E032C0045BE29 /* ProvState.m */,
+				94ED619F1B1E047B0045BE29 /* CharityFiles.h */,
+				94ED61A01B1E047B0045BE29 /* CharityFiles.m */,
+				94ED61A51B1E08860045BE29 /* CharityDetails.h */,
+				94ED61A61B1E08860045BE29 /* CharityDetails.m */,
 			);
 			path = ParseDataAPI;
 			sourceTree = "<group>";
@@ -250,7 +265,10 @@
 			files = (
 				9419FD4A1B18CCE900756D68 /* CharityProject.m in Sources */,
 				9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */,
+				94ED619E1B1E032C0045BE29 /* ProvState.m in Sources */,
 				9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */,
+				94ED61A11B1E047B0045BE29 /* CharityFiles.m in Sources */,
+				94ED61A71B1E08860045BE29 /* CharityDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
