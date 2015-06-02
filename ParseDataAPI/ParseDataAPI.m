@@ -24,6 +24,36 @@
     return data;
 }
 
+-(NSMutableArray*)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString *)NumPerPage :(NSString *)charitySize :(NSString *)charityType :(NSString *)keyword :(NSString *)country :(NSString *)provState{
+    if(token == nil)
+        return nil;
+    
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=searchCharities&token="];
+    [url appendString:token];
+    [url appendFormat:@"&PageNumber=%@",pageNum];
+    [url appendFormat:@"&NumPerPage=%@",NumPerPage];
+    [url appendFormat:@"&CharitySize=%@",charitySize];
+    [url appendFormat:@"&Country=%@",country];
+//    [url appendFormat:@"&ProvState=%@",provState];
+//    [url appendFormat:@"&Keyword=%@",keyword];
+//    [url appendFormat:@"&CharityType=%@",charityType];
+    [url appendString:@"&format=json"];
+    
+    NSData *data = [self createConnection:url];
+    NSError *error=nil;
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charities.charity"];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for(NSDictionary *i in response){
+        SearchCharities *sc = [[SearchCharities alloc] initWithParameters:i];
+        [array addObject:sc];
+    }
+    
+    return array;
+}
+
 -(NSMutableArray *)getFinancialDetails:(NSString *)token :(NSString *)regNum{
     if(token == nil)
         return nil;

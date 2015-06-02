@@ -13,6 +13,7 @@
 #import "CharityFiles.h"
 #import "CharityDetails.h"
 #import "FinancialDetails.h"
+#import "SearchCharities.h"
 
 @interface ParseDataAPI : NSObject
 
@@ -25,5 +26,6 @@
 -(NSMutableArray *)getCharityFiles:(NSString *)token :(NSString *)regNum;
 -(CharityDetails *)getCharityDetails:(NSString *)token :(NSString *)regNum;
 -(NSMutableArray *)getFinancialDetails:(NSString *)token :(NSString *)regNum;
+-(NSMutableArray *)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString*)NumPerPage :(NSString*)charitySize :(NSString*)charityType :(NSString*)keyword :(NSString*)country :(NSString*)provState;
 
 @end
