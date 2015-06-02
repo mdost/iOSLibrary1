@@ -66,7 +66,22 @@
         _IndividualPrograms=parameters[@"IndividualPrograms"];
         _InKindDonDescrip=parameters[@"InKindDonDescrip"];
         
-        
+        [self setTrueCharityValues:parameters[@"TrueCharityValue"]];
+        [self setCodeOfFundraisings:parameters[@"CodeOfFundraising"]];
+        [self setCostOfFundraisings:parameters[@"CostOfFundraising"]];
+        [self setHasDonorBillOfRightss:parameters[@"HasDonorBillOfRights"]];
+        [self setHasCodeOfEthicalFundraisings:parameters[@"HasCodeOfEthicalFundraising"]];
+        [self setHaveBoardGovMans:parameters[@"HaveBoardGovMan"]];
+        [self setNeedEmerFunds:parameters[@"NeedEmerFund"]];
+        [self setHaveStrategicPlans:parameters[@"HaveStrategicPlan"]];
+        [self setFundraisingCosts:parameters[@"FundraisingCost"]];
+        [self setGrossFunds:parameters[@"GrossFund"]];
+        [self setRealCharityValues:parameters[@"RealCharityValue"]];
+        [self setUpdateStatuss:parameters[@"UpdateStatus"]];
+        [self setDonorTypes:parameters[@"DonorType"]];
+        [self setOperatingBudgets:parameters[@"OperatingBudget"]];
+        [self setHaveProcesss:parameters[@"HaveProcess"]];
+
     }
     
     return self;

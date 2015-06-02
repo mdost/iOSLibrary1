@@ -40,6 +40,10 @@
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    for(NSDictionary *i in response){
+        CharityDetails *cd = [[CharityDetails alloc] initWithParameters:i];
+        [array addObject:cd];
+    }
 
     return array;
 }
