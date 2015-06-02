@@ -10,7 +10,7 @@
 
 @interface CharityFiles : NSObject
 
-@property int ID;
+@property (nonatomic) int ID;
 @property NSString * Name;
 @property NSString * Description;
 @property NSString * FileDate;
