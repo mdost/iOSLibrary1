@@ -25,7 +25,7 @@
 @property NSString * WhatIsNeeded;
 @property NSString * Notes;
 @property NSString * CharitySubType;
-@property (nonatomic) int UpdateStatus;
+@property int UpdateStatus;
 @property int DonorType;
 @property NSString * OrganizationSize;
 @property double OperatingBudget;
