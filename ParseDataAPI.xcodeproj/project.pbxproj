@@ -20,6 +20,7 @@
 		94ED61B61B1E54D70045BE29 /* ContactInfoDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61B51B1E54D70045BE29 /* ContactInfoDetails.m */; };
 		94ED61BF1B1E5B4A0045BE29 /* DonationURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61BE1B1E5B4A0045BE29 /* DonationURL.m */; };
 		94ED61C21B1E5C2F0045BE29 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61C11B1E5C2F0045BE29 /* Info.m */; };
+		94ED61C51B1E5FF80045BE29 /* GiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61C41B1E5FF80045BE29 /* GiveAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,8 @@
 		94ED61BE1B1E5B4A0045BE29 /* DonationURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationURL.m; sourceTree = "<group>"; };
 		94ED61C01B1E5C2F0045BE29 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		94ED61C11B1E5C2F0045BE29 /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
+		94ED61C31B1E5FF80045BE29 /* GiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveAPI.h; sourceTree = "<group>"; };
+		94ED61C41B1E5FF80045BE29 /* GiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				94ED61BE1B1E5B4A0045BE29 /* DonationURL.m */,
 				94ED61C01B1E5C2F0045BE29 /* Info.h */,
 				94ED61C11B1E5C2F0045BE29 /* Info.m */,
+				94ED61C31B1E5FF80045BE29 /* GiveAPI.h */,
+				94ED61C41B1E5FF80045BE29 /* GiveAPI.m */,
 			);
 			path = ParseDataAPI;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				94ED61AD1B1E44300045BE29 /* FinancialDetails.m in Sources */,
 				9458FD131B1619EF00E819FB /* CharitySalaries.m in Sources */,
 				94ED619E1B1E032C0045BE29 /* ProvState.m in Sources */,
+				94ED61C51B1E5FF80045BE29 /* GiveAPI.m in Sources */,
 				9458FD011B151A4A00E819FB /* ParseDataAPI.m in Sources */,
 				94ED61C21B1E5C2F0045BE29 /* Info.m in Sources */,
 				94ED61A11B1E047B0045BE29 /* CharityFiles.m in Sources */,
