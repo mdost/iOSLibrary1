@@ -23,18 +23,17 @@
 @property (nonatomic) int TotalCompensationPartTimeEmployees;
 @property (nonatomic) int TotalCompensationOrganization;
 
--(void)setNumTop10_1_39999:(NSString *)value;
--(void)setNumTop10_40K_79999:(NSString *)value;
--(void)setNumTop10_80K_119999:(NSString *)value;
--(void)setNumTop10_120K_159999:(NSString *)value;
--(void)setNumTop10_160K_199999:(NSString *)value;
--(void)setNumTop10_200K_249999:(NSString *)value;
--(void)setNumTop10_250K_299999:(NSString *)value;
--(void)setNumTop10_300K_349999:(NSString *)value;
--(void)setNumTop10_350K_Plus:(NSString *)value;
--(void)setTotalCompensationPartTimeEmployees:(NSString *)value;
--(void)setTotalCompensationOrganization:(NSString *)value;
-
-
+-(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(void)setNumTop10_1_39999s:(NSString *)value;
+-(void)setNumTop10_40K_79999s:(NSString *)value;
+-(void)setNumTop10_80K_119999s:(NSString *)value;
+-(void)setNumTop10_120K_159999s:(NSString *)value;
+-(void)setNumTop10_160K_199999s:(NSString *)value;
+-(void)setNumTop10_200K_249999s:(NSString *)value;
+-(void)setNumTop10_250K_299999s:(NSString *)value;
+-(void)setNumTop10_300K_349999s:(NSString *)value;
+-(void)setNumTop10_350K_Pluss:(NSString *)value;
+-(void)setTotalCompensationPartTimeEmployee:(NSString *)value;
+-(void)setTotalCompensationOrganizations:(NSString *)value;
 
 @end

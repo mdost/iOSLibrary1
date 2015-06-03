@@ -20,7 +20,7 @@
 @interface ParseDataAPI : NSObject
 
 -(NSData *)createConnection:(NSMutableString *)url;
-
+-(NSString *)getToken:(NSString *)appid :(NSString *)appSecret;
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum;
 -(NSMutableArray *)getCharityType:(NSString *)token;
 -(NSMutableArray *)getCharityProject:(NSString*)token :(NSString *)regNum;

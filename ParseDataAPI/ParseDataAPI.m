@@ -24,20 +24,50 @@
     return data;
 }
 
--(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj{
-    if(token == nil)
+-(NSString *)getToken:(NSString *)appid :(NSString *)appSecret{
+    if(appid == nil || appSecret ==nil)
         return nil;
     
-    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getFinancialDetails&token="];
-    [url appendString:token];
-    [url appendFormat:@"&Amount=%@",obj.amount];
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api-auth?app_id="];
+    [url appendString:appid];
+    [url appendFormat:@"&app_secret=%@", appSecret];
     [url appendString:@"&format=json"];
     
     NSData *data = [self createConnection:url];
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.financialDetails.financialData"];
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
+    NSString *token = [response valueForKey:@"token"];
+    
+    return token;
+    
+}
+
+-(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj{
+    if(token == nil)
+        return nil;
+    
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getDonationURL&token="];
+    [url appendString:token];
+    
+    if (obj.amount == nil || obj.currency == nil || obj.regNum == nil || obj.backURL == nil || obj.redirectURL == nil || obj.projectType == nil) {
+        return nil;
+    }
+    [url appendFormat:@"&Amount=%@",obj.amount];
+    [url appendFormat:@"&Currency=%@",obj.currency];
+    [url appendFormat:@"&regNum=%@",obj.regNum];
+    [url appendFormat:@"&BackURL=%@",obj.backURL];
+    [url appendFormat:@"&RedirectURL=%@",obj.redirectURL];
+    [url appendFormat:@"&ProjectType=%@",obj.projectType];
+    [url appendFormat:@"&IsAnonymous=%@",obj.isAnonymous ? @"true" : @"false"];
+    [url appendString:@"&format=json"];
+    
+    NSData *data = [self createConnection:url];
+    NSError *error=nil;
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
     DonationURL *du = [[DonationURL alloc] initWithParameters:response];
     
     return du;
@@ -53,9 +83,9 @@
     [url appendFormat:@"&NumPerPage=%@",NumPerPage];
     [url appendFormat:@"&CharitySize=%@",charitySize];
     [url appendFormat:@"&Country=%@",country];
-//    [url appendFormat:@"&ProvState=%@",provState];
-//    [url appendFormat:@"&Keyword=%@",keyword];
-//    [url appendFormat:@"&CharityType=%@",charityType];
+    //    [url appendFormat:@"&ProvState=%@",provState];
+    //    [url appendFormat:@"&Keyword=%@",keyword];
+    //    [url appendFormat:@"&CharityType=%@",charityType];
     [url appendString:@"&format=json"];
     
     NSData *data = [self createConnection:url];
@@ -94,7 +124,7 @@
         FinancialDetails *fd = [[FinancialDetails alloc] initWithParameters:i];
         [array addObject:fd];
     }
-
+    
     return array;
     
 }
@@ -252,31 +282,7 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charitySalaries.salaryData"];
-    CharitySalaries *cs = [[CharitySalaries alloc] init];
-    
-    NSString *NumTop10_1_39999 = [response valueForKey:@"NumTop10_1_39999"];
-    NSString *NumTop10_40K_79999 = [response valueForKey:@"NumTop10_40K_79999"];
-    NSString *NumTop10_80K_119999 = [response valueForKey:@"NumTop10_80K_119999"];
-    NSString *NumTop10_120K_159999 = [response valueForKey:@"NumTop10_120K_159999"];
-    NSString *NumTop10_160K_199999 = [response valueForKey:@"NumTop10_160K_199999"];
-    NSString *NumTop10_200K_249999 = [response valueForKey:@"NumTop10_200K_249999"];
-    NSString *NumTop10_250K_299999 = [response valueForKey:@"NumTop10_250K_299999"];
-    NSString *NumTop10_300K_349999 = [response valueForKey:@"NumTop10_300K_349999"];
-    NSString *NumTop10_350K_Plus = [response valueForKey:@"NumTop10_350K_Plus"];
-    NSString *TotalCompensationPartTimeEmployees = [response valueForKey:@"TotalCompensationPartTimeEmployees"];
-    NSString *TotalCompensationOrganization=[response valueForKey:@"TotalCompensationOrganization"];
-    
-    [cs setNumTop10_1_39999:NumTop10_1_39999];
-    [cs setNumTop10_40K_79999:NumTop10_40K_79999];
-    [cs setNumTop10_80K_119999:NumTop10_80K_119999];
-    [cs setNumTop10_120K_159999:NumTop10_120K_159999];
-    [cs setNumTop10_160K_199999:NumTop10_160K_199999];
-    [cs setNumTop10_200K_249999:NumTop10_200K_249999];
-    [cs setNumTop10_250K_299999:NumTop10_250K_299999];
-    [cs setNumTop10_300K_349999:NumTop10_300K_349999];
-    [cs setNumTop10_350K_Plus:NumTop10_350K_Plus];
-    [cs setTotalCompensationPartTimeEmployees:TotalCompensationPartTimeEmployees];
-    [cs setTotalCompensationOrganization:TotalCompensationOrganization];
+    CharitySalaries *cs = [[CharitySalaries alloc] initWithParameters:response];
     
     return cs;
 }

@@ -28,7 +28,7 @@
 
 @property NSString * clientUnique;
 @property NSString * clientFee;
-@property NSString * isAnonymous;
+@property bool isAnonymous;
 @property NSString * Note;
 @property NSString * InHonourOf;
 @property NSString * InMemorialOf;
