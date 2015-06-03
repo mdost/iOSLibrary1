@@ -30,5 +30,6 @@
 -(NSMutableArray *)getFinancialDetails:(NSString *)token :(NSString *)regNum;
 -(NSMutableArray *)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString*)NumPerPage :(NSString*)charitySize :(NSString*)charityType :(NSString*)keyword :(NSString*)country :(NSString*)provState;
 -(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj;
+-(void)validateToken:(NSString *)token;
 
 @end

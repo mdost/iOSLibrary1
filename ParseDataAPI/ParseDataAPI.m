@@ -10,6 +10,9 @@
 
 @implementation ParseDataAPI
 
+static dispatch_once_t once;
+static bool run_once_only;
+
 /**
  * creates a connection
  */
@@ -24,6 +27,16 @@
     return data;
 }
 
+-(void)validateToken:(NSString *)token{
+    NSRange invalidCharacters = [token rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if(run_once_only == false){
+        NSLog(@"Please call getToken first.");
+    }else if(token.length != 36 || token ==nil || invalidCharacters.location != NSNotFound){
+        NSLog(@"token is not of correct size, or null or contains invalid characters.");
+    }
+}
+
+//only be asked once.
 -(NSString *)getToken:(NSString *)appid :(NSString *)appSecret{
     if(appid == nil || appSecret ==nil)
         return nil;
@@ -32,14 +45,23 @@
     [url appendString:appid];
     [url appendFormat:@"&app_secret=%@", appSecret];
     [url appendString:@"&format=json"];
+    __block NSString *token=nil;
     
-    NSData *data = [self createConnection:url];
-    NSError *error=nil;
+    @synchronized(self){
+        if(run_once_only == false){
+            run_once_only= true;
+            
+            dispatch_once(&once, ^{
+                NSData *data = [self createConnection:url];
+                NSError *error=nil;
     
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
-    NSString *token = [response valueForKey:@"token"];
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
+                token = [response valueForKey:@"token"];
     
+            });
+        }
+    }
     return token;
     
 }
@@ -264,6 +286,8 @@
  */
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum{
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharitySalaries&token="];
+    
+    [self validateToken:token];
     
     //check that the parameters are not null
     if (regNum ==nil || token == nil) {
