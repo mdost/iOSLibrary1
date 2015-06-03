@@ -27,13 +27,18 @@ volatile static bool run_once_only=false;
     return data;
 }
 
--(void)validateToken:(NSString *)token{
+-(BOOL)validateToken:(NSString *)token{
     NSRange invalidCharacters = [token rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     if(run_once_only == false){
         NSLog(@"Please call getToken first.");
+        //        return true;
     }else if(token.length != 36 || token ==nil || invalidCharacters.location != NSNotFound){
         NSLog(@"token is not of correct size, or null or contains invalid characters.");
+        return true;
     }
+    
+    return false;
 }
 
 //only be asked once.
@@ -67,22 +72,63 @@ volatile static bool run_once_only=false;
 }
 
 -(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj{
-    if(token == nil)
-        return nil;
+    DonationURL *errorDetails = [[DonationURL alloc] init];
     
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        return errorDetails;
+    }
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getDonationURL&token="];
     [url appendString:token];
     
     if (obj.amount == nil || obj.currency == nil || obj.regNum == nil || obj.backURL == nil || obj.redirectURL == nil || obj.projectType == nil) {
-        return nil;
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid parameters. One or more parameters are missing for amount, redirectURL, backURL, projectType, regNum, or currency.";
+        return errorDetails;
     }
+    
     [url appendFormat:@"&Amount=%@",obj.amount];
     [url appendFormat:@"&Currency=%@",obj.currency];
     [url appendFormat:@"&regNum=%@",obj.regNum];
     [url appendFormat:@"&BackURL=%@",obj.backURL];
     [url appendFormat:@"&RedirectURL=%@",obj.redirectURL];
     [url appendFormat:@"&ProjectType=%@",obj.projectType];
-    [url appendFormat:@"&IsAnonymous=%@",obj.isAnonymous ? @"true" : @"false"];
+    
+    if(obj.isAnonymous == true){
+        [url appendFormat:@"&IsAnonymous=%@",obj.isAnonymous ? @"true" : @"false"];
+    }else if(obj.isAnonymous == false){
+        if((obj.fname == nil || obj.fname.length==0) || (obj.lname == nil || obj.lname.length==0) || (obj.address == nil || obj.address.length==0) || (obj.city == nil || obj.city.length==0) || (obj.provState == nil || obj.provState.length==0) || (obj.country == nil || obj.country.length==0)  || (obj.email == nil || obj.email.length==0)){
+            errorDetails.status_code=200;
+            errorDetails.status_code_description=@"Invalid parameters. One or more parameters are missing from personal info. Make sure all personal info is filled as the donation is not anonymous.";
+            return errorDetails;
+            
+        }
+        
+        [url appendFormat:@"&FirstName=%@",obj.fname];
+        [url appendFormat:@"&LastName=%@",obj.lname];
+        [url appendFormat:@"&Address=%@",obj.address];
+        [url appendFormat:@"&City=%@",obj.city];
+        [url appendFormat:@"&ProvState=%@",obj.provState];
+        [url appendFormat:@"&PostalZip=%@",obj.postalZip];
+        [url appendFormat:@"&Country=%@",obj.country];
+        [url appendFormat:@"&Email=%@",obj.email];
+        
+    }
+    
+    if(obj.clientUnique != nil || obj.clientUnique.length != 0)
+        [url appendFormat:@"&ClientUnique=%@",obj.clientUnique];
+    if(obj.clientFee != nil || obj.clientFee.length != 0)
+        [url appendFormat:@"&Clientfee=%@",obj.clientFee];
+    if(obj.Note != nil || obj.Note.length != 0)
+        [url appendFormat:@"&Note=%@",obj.Note];
+    if(obj.InMemorialOf != nil || obj.InMemorialOf.length != 0)
+        [url appendFormat:@"&InMemorialOf=%@",obj.InMemorialOf];
+    if(obj.InHonourOf != nil || obj.InHonourOf.length != 0)
+        [url appendFormat:@"&InHonourOf=%@",obj.InHonourOf];
+    
     [url appendString:@"&format=json"];
     
     NSData *data = [self createConnection:url];
@@ -97,18 +143,43 @@ volatile static bool run_once_only=false;
 }
 
 -(NSMutableArray*)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString *)NumPerPage :(NSString *)charitySize :(NSString *)charityType :(NSString *)keyword :(NSString *)country :(NSString *)provState{
-    if(token == nil)
-        return nil;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    SearchCharities *errorDetails =[[SearchCharities alloc] init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        [array addObject:errorDetails];
+        return array;
+    }if (pageNum ==nil || pageNum.length ==0 || NumPerPage ==nil || NumPerPage.length ==0) {
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid PageNum or NumPerPage, please enter value for both parameters";
+        [array addObject:errorDetails];
+        return array;
+    } if((charitySize == nil || charitySize.length ==0) && (charityType == nil || charityType.length ==0) && (keyword == nil || keyword.length ==0) ){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid charitySize, charityType, and keyword. Please enter a value for one of these parameters.";
+        [array addObject:errorDetails];
+        return array;
+    }
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=searchCharities&token="];
     [url appendString:token];
     [url appendFormat:@"&PageNumber=%@",pageNum];
     [url appendFormat:@"&NumPerPage=%@",NumPerPage];
-    [url appendFormat:@"&CharitySize=%@",charitySize];
-    [url appendFormat:@"&Country=%@",country];
-    //    [url appendFormat:@"&ProvState=%@",provState];
-    //    [url appendFormat:@"&Keyword=%@",keyword];
-    //    [url appendFormat:@"&CharityType=%@",charityType];
+    
+    if(keyword != nil || keyword.length != 0)
+        [url appendFormat:@"&Keyword=%@",keyword];
+    if(charityType != nil || charityType.length != 0)
+        [url appendFormat:@"&CharityType=%@",charityType];
+    if(charitySize != nil || charitySize.length != 0)
+        [url appendFormat:@"&CharitySize=%@",charitySize];
+    if(country != nil || country.length != 0)
+        [url appendFormat:@"&Country=%@",country];
+    if(provState != nil || provState.length != 0)
+        [url appendFormat:@"&ProvState=%@",provState];
     [url appendString:@"&format=json"];
     
     NSData *data = [self createConnection:url];
@@ -117,8 +188,6 @@ volatile static bool run_once_only=false;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charities.charity"];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
     
     //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
     SearchCharities *getError =[[SearchCharities alloc] initWithParameters:nil :message];
@@ -137,8 +206,22 @@ volatile static bool run_once_only=false;
 }
 
 -(NSMutableArray *)getFinancialDetails:(NSString *)token :(NSString *)regNum{
-    if(token == nil)
-        return nil;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    FinancialDetails *errorDetails =[[FinancialDetails alloc] init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        [array addObject:errorDetails];
+        return array;
+    }else if (regNum ==nil || regNum.length ==0) {
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
+        [array addObject:errorDetails];
+        return array;
+    }
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getFinancialDetails&token="];
     [url appendString:token];
@@ -151,8 +234,6 @@ volatile static bool run_once_only=false;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.financialDetails.financialData"];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
     
     //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
     FinancialDetails *getError =[[FinancialDetails alloc] initWithParameters:nil :message];
@@ -171,8 +252,21 @@ volatile static bool run_once_only=false;
 }
 
 -(CharityDetails *)getCharityDetails:(NSString *)token :(NSString *)regNum{
-    if(token == nil)
-        return nil;
+    CharityDetails *errDetails = [[CharityDetails alloc] init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    //check that the parameters are not null
+    if (regNum ==nil || regNum.length ==0) {
+        errDetails.status_code=200;
+        errDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
+        return errDetails;
+    }else if(verifyToken == true){
+        errDetails.status_code=200;
+        errDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        return errDetails;
+    }
+    
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityDetails&token="];
     [url appendString:token];
@@ -191,8 +285,23 @@ volatile static bool run_once_only=false;
 }
 
 -(NSMutableArray *)getCharityFiles:(NSString *)token :(NSString *)regNum{
-    if(token == nil)
-        return nil;
+    CharityProject *errorDetails =[[CharityProject alloc] init];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        [array addObject:errorDetails];
+        return array;
+    }else if (regNum ==nil || regNum.length ==0) {
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
+        [array addObject:errorDetails];
+        return array;
+    }
+    
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityFiles&token="];
     [url appendString:token];
@@ -205,8 +314,6 @@ volatile static bool run_once_only=false;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityFiles.file"];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
     
     //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
     CharityFiles *getError =[[CharityFiles alloc] initWithParameters:nil :message];
@@ -229,8 +336,22 @@ volatile static bool run_once_only=false;
  * Return the prov state
  */
 -(NSMutableArray *)getProvState:(NSString *)token :(NSString *)country{
-    if(token == nil)
-        return nil;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    ProvState *errorDetails = [[ProvState alloc] init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        [array addObject:errorDetails];
+        return array;
+    }else if (country ==nil || country.length ==0) {
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid country. Please enter correct country.";
+        [array addObject:errorDetails];
+        return array;
+    }
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getProvState&token="];
     [url appendString:token];
@@ -243,8 +364,6 @@ volatile static bool run_once_only=false;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.proveStates.provState.provState"];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
     
     //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
     ProvState *getError =[[ProvState alloc] initWithParameters:nil :message];
@@ -266,8 +385,23 @@ volatile static bool run_once_only=false;
  * Returns the project of charity
  */
 -(NSMutableArray *)getCharityProject:(NSString *)token :(NSString *)regNum{
-    if(token == nil)
-        return nil;
+    CharityProject *errorDetails =[[CharityProject alloc] init];
+    NSMutableArray *charityProject=[[NSMutableArray alloc]init];
+    
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        [charityProject addObject:errorDetails];
+        return charityProject;
+    }else if (regNum ==nil || regNum.length ==0) {
+        errorDetails.status_code=200;
+        errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
+        [charityProject addObject:errorDetails];
+        return charityProject;
+    }
+    
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityProjects&token="];
     
@@ -279,7 +413,6 @@ volatile static bool run_once_only=false;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSMutableArray *charityProject=[[NSMutableArray alloc]init];
     
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityProjects.project"];
@@ -303,8 +436,16 @@ volatile static bool run_once_only=false;
  * Returns the charity type
  */
 -(NSMutableArray *)getCharityType:(NSString *)token{
-    if(token == nil)
-        return nil;
+    NSMutableArray *charityTypeArray= [[NSMutableArray alloc] init];
+    bool verifyToken = [self validateToken:token];
+    
+    if(verifyToken == true){
+        [charityTypeArray addObject:@"200"];
+        [charityTypeArray addObject:@"Invalid token, please enter correct token."];
+        return charityTypeArray;
+        
+    }
+    
     
     NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharityTypes&token="];
     
@@ -316,7 +457,6 @@ volatile static bool run_once_only=false;
     
     //parse the data which is in the format json
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSMutableArray *charityTypeArray= [[NSMutableArray alloc] init];
     
     int status_code =[[json valueForKeyPath:@"give-api.status-code"] intValue];
     NSString *status_code_description =[json valueForKeyPath:@"give-api.status-code-description"];
@@ -342,15 +482,22 @@ volatile static bool run_once_only=false;
  * Returns an object of type CharitySalaries that contains the salaries of a specific charity found by the registrantion number (regNum)
  */
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum{
-    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharitySalaries&token="];
+    CharitySalaries *errDetails = [[CharitySalaries alloc] init];
     
-    [self validateToken:token];
+    bool verifyToken = [self validateToken:token];
     
     //check that the parameters are not null
-    if (regNum ==nil) {
-        return nil;
+    if (regNum ==nil || regNum.length ==0) {
+        errDetails.status_code=200;
+        errDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
+        return errDetails;
+    }else if(verifyToken == true){
+        errDetails.status_code=200;
+        errDetails.status_code_description=@"Invalid token. Please enter correct token.";
+        return errDetails;
     }
     
+    NSMutableString *url= [NSMutableString stringWithString: @"https://app.place2give.com/Service.svc/give-api?action=getCharitySalaries&token="];
     [url appendString:token];
     [url appendFormat:@"&regNum=%@",regNum];
     [url appendString:@"&format=json"];
