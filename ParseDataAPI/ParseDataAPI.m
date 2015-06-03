@@ -92,7 +92,7 @@ volatile static bool run_once_only=false;
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
     DonationURL *du = [[DonationURL alloc] initWithParameters:response :message];
-
+    
     return du;
 }
 
@@ -119,6 +119,15 @@ volatile static bool run_once_only=false;
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charities.charity"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
+    SearchCharities *getError =[[SearchCharities alloc] initWithParameters:nil :message];
+    if (getError.status_code != 100) {
+        [array addObject:getError];
+        return array;
+    }
+    
+    
     for(NSDictionary *i in response){
         SearchCharities *sc = [[SearchCharities alloc] initWithParameters:i :message];
         [array addObject:sc];
@@ -144,6 +153,13 @@ volatile static bool run_once_only=false;
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.financialDetails.financialData"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
+    FinancialDetails *getError =[[FinancialDetails alloc] initWithParameters:nil :message];
+    if (getError.status_code != 100) {
+        [array addObject:getError];
+        return array;
+    }
     
     for(NSDictionary *i in response){
         FinancialDetails *fd = [[FinancialDetails alloc] initWithParameters:i :message];
@@ -192,6 +208,14 @@ volatile static bool run_once_only=false;
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
+    //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
+    CharityFiles *getError =[[CharityFiles alloc] initWithParameters:nil :message];
+    if (getError.status_code != 100) {
+        [array addObject:getError];
+        return array;
+    }
+    
+    
     for(NSDictionary *i in response){
         CharityFiles *cf = [[CharityFiles alloc] initWithParameters:i :message];
         [array addObject:cf];
@@ -222,6 +246,14 @@ volatile static bool run_once_only=false;
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
+    //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
+    ProvState *getError =[[ProvState alloc] initWithParameters:nil :message];
+    if (getError.status_code != 100) {
+        [array addObject:getError];
+        return array;
+    }
+    
+    
     for(NSDictionary * i in response){
         ProvState *ps = [[ProvState alloc] initWithParameters:i :message];
         [array addObject:ps];
@@ -247,10 +279,17 @@ volatile static bool run_once_only=false;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableArray *charityProject=[[NSMutableArray alloc]init];
+    
     NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityProjects.project"];
     
-    NSMutableArray *charityProject=[[NSMutableArray alloc]init];
+    //check error condition to ensure the retrieval was successful. If not then add error message to object and return it in an array.
+    CharityProject *getError =[[CharityProject alloc] initWithParameters:nil :message];
+    if (getError.status_code != 100) {
+        [charityProject addObject:getError];
+        return charityProject;
+    }
     
     for(NSDictionary *i in response){
         CharityProject *cp =[[CharityProject alloc] initWithParameters:i :message];
@@ -281,7 +320,7 @@ volatile static bool run_once_only=false;
     
     int status_code =[[json valueForKeyPath:@"give-api.status-code"] intValue];
     NSString *status_code_description =[json valueForKeyPath:@"give-api.status-code-description"];
-
+    
     if(status_code != 100){
         [charityTypeArray addObject:[NSNumber numberWithInt:status_code]];
         [charityTypeArray addObject:status_code_description];
