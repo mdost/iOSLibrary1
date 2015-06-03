@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ContactInfoDetails.h"
+#import "GiveAPI.h"
 
-@interface SearchCharities : NSObject
+@interface SearchCharities : GiveAPI
 
 @property NSString * regNum;
 @property NSString * Name;
@@ -24,7 +25,7 @@
 @property NSString * OperatingCountry;
 @property ContactInfoDetails* ContactInfo;
 
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 
 
 @end

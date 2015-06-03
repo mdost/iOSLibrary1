@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface CharityDetails : NSObject
+@interface CharityDetails : GiveAPI
 
 @property NSString * CharityName;
 @property NSString * CharityOppName;
@@ -97,6 +98,6 @@
 -(void)setUpdateStatuss:(NSString *)UpdateStatus;
 -(void)setDonorTypes:(NSString *)DonorType;
 -(void)setOperatingBudgets:(NSString *)OperatingBudget;
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 
 @end

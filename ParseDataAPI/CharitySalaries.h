@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-
-@interface CharitySalaries: NSObject
+@interface CharitySalaries: GiveAPI
 
 @property (nonatomic) int NumTop10_1_39999;
 @property (nonatomic) int NumTop10_40K_79999;
@@ -23,7 +23,7 @@
 @property (nonatomic) int TotalCompensationPartTimeEmployees;
 @property (nonatomic) int TotalCompensationOrganization;
 
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 -(void)setNumTop10_1_39999s:(NSString *)value;
 -(void)setNumTop10_40K_79999s:(NSString *)value;
 -(void)setNumTop10_80K_119999s:(NSString *)value;

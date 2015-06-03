@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface DonationURL : NSObject
+@interface DonationURL : GiveAPI
 
 @property NSString * donationURL;
 @property NSString * expires;
 
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary *)error;
 
 @end

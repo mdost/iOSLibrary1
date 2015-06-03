@@ -10,7 +10,7 @@
 
 @implementation SearchCharities
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if(self){
@@ -25,6 +25,8 @@
         _LogoUrl= parameters[@"LogoUrl"];
         _OperatingCountry= parameters[@"OperatingCountry"];
         _ContactInfo = [[ContactInfoDetails alloc] initWithParameters:parameters[@"ContactInfo"]];
+        
+        self = [self initWithParameters:error];
     }
     
     return self;

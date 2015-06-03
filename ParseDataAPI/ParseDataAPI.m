@@ -11,7 +11,7 @@
 @implementation ParseDataAPI
 
 static dispatch_once_t once;
-static bool run_once_only;
+volatile static bool run_once_only=false;
 
 /**
  * creates a connection
@@ -54,11 +54,11 @@ static bool run_once_only;
             dispatch_once(&once, ^{
                 NSData *data = [self createConnection:url];
                 NSError *error=nil;
-    
+                
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
                 NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
                 token = [response valueForKey:@"token"];
-    
+                
             });
         }
     }
@@ -89,9 +89,10 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
-    DonationURL *du = [[DonationURL alloc] initWithParameters:response];
-    
+    DonationURL *du = [[DonationURL alloc] initWithParameters:response :message];
+
     return du;
 }
 
@@ -114,11 +115,12 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charities.charity"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for(NSDictionary *i in response){
-        SearchCharities *sc = [[SearchCharities alloc] initWithParameters:i];
+        SearchCharities *sc = [[SearchCharities alloc] initWithParameters:i :message];
         [array addObject:sc];
     }
     
@@ -138,12 +140,13 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.financialDetails.financialData"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     for(NSDictionary *i in response){
-        FinancialDetails *fd = [[FinancialDetails alloc] initWithParameters:i];
+        FinancialDetails *fd = [[FinancialDetails alloc] initWithParameters:i :message];
         [array addObject:fd];
     }
     
@@ -164,8 +167,9 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
-    CharityDetails *cd = [[CharityDetails alloc] initWithParameters:response];
+    CharityDetails *cd = [[CharityDetails alloc] initWithParameters:response :message];
     
     return cd;
 }
@@ -183,12 +187,13 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityFiles.file"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     for(NSDictionary *i in response){
-        CharityFiles *cf = [[CharityFiles alloc] initWithParameters:i];
+        CharityFiles *cf = [[CharityFiles alloc] initWithParameters:i :message];
         [array addObject:cf];
     }
     
@@ -212,12 +217,13 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.proveStates.provState.provState"];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     for(NSDictionary * i in response){
-        ProvState *ps = [[ProvState alloc] initWithParameters:i];
+        ProvState *ps = [[ProvState alloc] initWithParameters:i :message];
         [array addObject:ps];
     }
     
@@ -241,12 +247,13 @@ static bool run_once_only;
     NSError *error=nil;
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityProjects.project"];
     
     NSMutableArray *charityProject=[[NSMutableArray alloc]init];
     
     for(NSDictionary *i in response){
-        CharityProject *cp =[[CharityProject alloc] initWithParameters:i];
+        CharityProject *cp =[[CharityProject alloc] initWithParameters:i :message];
         [charityProject addObject:cp];
     }
     
@@ -270,8 +277,19 @@ static bool run_once_only;
     
     //parse the data which is in the format json
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityTypes.charityType.type"];
     NSMutableArray *charityTypeArray= [[NSMutableArray alloc] init];
+    
+    int status_code =[[json valueForKeyPath:@"give-api.status-code"] intValue];
+    NSString *status_code_description =[json valueForKeyPath:@"give-api.status-code-description"];
+
+    if(status_code != 100){
+        [charityTypeArray addObject:[NSNumber numberWithInt:status_code]];
+        [charityTypeArray addObject:status_code_description];
+        return charityTypeArray;
+        
+    }
+    
+    NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charityTypes.charityType.type"];
     
     for(id key in response){
         [charityTypeArray addObject:key];
@@ -290,7 +308,7 @@ static bool run_once_only;
     [self validateToken:token];
     
     //check that the parameters are not null
-    if (regNum ==nil || token == nil) {
+    if (regNum ==nil) {
         return nil;
     }
     
@@ -304,9 +322,10 @@ static bool run_once_only;
     
     //parse the data which is in the format json
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    
+    NSMutableDictionary *message =[json valueForKeyPath:@"give-api"];
     NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data.charitySalaries.salaryData"];
-    CharitySalaries *cs = [[CharitySalaries alloc] initWithParameters:response];
+    
+    CharitySalaries *cs = [[CharitySalaries alloc] initWithParameters:response :message];
     
     return cs;
 }

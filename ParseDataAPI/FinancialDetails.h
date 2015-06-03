@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface FinancialDetails : NSObject
+@interface FinancialDetails : GiveAPI
 
 @property NSString * FiscalYear;
 @property double PrimaryRevenue;
@@ -30,7 +31,7 @@
 @property double OtherLiabilities;
 @property double TotalLiabilities;
 
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 -(void)setPrimaryRevenues:(NSString*)PrimaryRevenue;
 -(void)setGiftsNoReceipt:(NSString*)GiftsNoReceipts;
 -(void)setRevGovernments:(NSString*)RevGovernment;

@@ -11,7 +11,7 @@
 
 @implementation CharitySalaries
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if (self) {
@@ -27,6 +27,8 @@
         [self setNumTop10_1_39999s:[parameters valueForKey:@"NumTop10_1_39999"]];
         [self setTotalCompensationOrganizations:[parameters valueForKey:@"TotalCompensationOrganization"]];
         [self setTotalCompensationPartTimeEmployee:[parameters valueForKey:@"TotalCompensationPartTimeEmployees"]];
+        
+        self = [self initWithParameters:error];
         
     }
     

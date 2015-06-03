@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface CharityFiles : NSObject
+@interface CharityFiles : GiveAPI
 
 @property (nonatomic) int ID;
 @property NSString * Name;
@@ -17,6 +18,6 @@
 @property NSString * Type;
 
 -(void)setID:(NSString *)value;
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface ProvState : NSObject
+@interface ProvState : GiveAPI
 
 @property NSString *id;
 @property NSString * text;
 
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 
 @end

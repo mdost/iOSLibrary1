@@ -10,12 +10,14 @@
 
 @implementation DonationURL
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self=[super init];
     
     if (self) {
         _donationURL = [parameters valueForKey:@"donationURL"];
         _expires = [parameters valueForKey:@"expires"];
+        [self setStatus_codes:[error valueForKey:@"status-code"]];
+        self.status_code_description=[error valueForKey:@"status-code-description"];
     }
     
     return self;

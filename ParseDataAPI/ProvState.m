@@ -10,12 +10,13 @@
 
 @implementation ProvState
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if(self){
         _text = parameters[@"#text"];
         _id = parameters[@"@id"];
+        self = [self initWithParameters:error];
     }
     
     return self;

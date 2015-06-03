@@ -10,7 +10,7 @@
 
 @implementation FinancialDetails
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if(self){
@@ -33,6 +33,8 @@
         [self setAcctsPayables:parameters[@"AcctsPayable"]];
         [self setDefRevenues:parameters[@"DefRevenue"]];
         [self setTotalAsset:parameters[@"TotalAssets"]];
+        
+        self =[self initWithParameters:error];
         
     }
     

@@ -10,7 +10,7 @@
 
 @implementation CharityFiles
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if(self){
@@ -19,6 +19,7 @@
         _Description = parameters[@"Description"];
         _Type = parameters[@"Type"];
         _FileDate = parameters[@"FileDate"];
+        self=[self initWithParameters:error];
     }
     
     return self;

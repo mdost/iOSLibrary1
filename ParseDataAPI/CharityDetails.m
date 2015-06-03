@@ -10,7 +10,7 @@
 
 @implementation CharityDetails
 
--(instancetype)initWithParameters:(NSDictionary *)parameters{
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error{
     self = [super init];
     
     if (self) {
@@ -82,6 +82,8 @@
         [self setDonorTypes:[parameters valueForKey:@"DonorType"]];
         [self setOperatingBudgets:[parameters valueForKey:@"OperatingBudget"]];
         [self setHaveProcesss:[parameters valueForKey:@"HaveProcess"]];
+        
+        self = [self initWithParameters:error];
         
     }
     

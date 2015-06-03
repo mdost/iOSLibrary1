@@ -10,4 +10,10 @@
 
 @interface GiveAPI : NSObject
 
+@property int status_code;
+@property NSString * status_code_description;
+
+-(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(void)setStatus_codes:(NSString *)status_code;
+
 @end

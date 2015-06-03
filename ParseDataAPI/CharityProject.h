@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GiveAPI.h"
 
-@interface CharityProject : NSObject
+@interface CharityProject : GiveAPI
 
 @property (nonatomic) NSString *DateModified;
 @property NSString *ProjectName;
@@ -24,6 +25,6 @@
 -(void)setMaterialCost:(NSString *)MaterialCost;
 -(void)setOverhead:(NSString *)Overhead;
 -(void)setOtherCosts:(NSString *)OtherCosts;
--(instancetype)initWithParameters:(NSDictionary *)parameters;
+-(instancetype)initWithParameters:(NSDictionary *)parameters :(NSDictionary*)error;
 
 @end
