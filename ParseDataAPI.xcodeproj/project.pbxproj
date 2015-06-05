@@ -21,6 +21,17 @@
 		94ED61BF1B1E5B4A0045BE29 /* DonationURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61BE1B1E5B4A0045BE29 /* DonationURL.m */; };
 		94ED61C21B1E5C2F0045BE29 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61C11B1E5C2F0045BE29 /* Info.m */; };
 		94ED61C51B1E5FF80045BE29 /* GiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ED61C41B1E5FF80045BE29 /* GiveAPI.m */; };
+		94ED62A61B20CAB60045BE29 /* CharitySalaries.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9458FD141B161A4200E819FB /* CharitySalaries.h */; };
+		94ED62A71B20CAD80045BE29 /* ProvState.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED619C1B1E032C0045BE29 /* ProvState.h */; };
+		94ED62A81B20CAD80045BE29 /* CharityFiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED619F1B1E047B0045BE29 /* CharityFiles.h */; };
+		94ED62A91B20CAD80045BE29 /* CharityDetails.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61A51B1E08860045BE29 /* CharityDetails.h */; };
+		94ED62AA1B20CAD80045BE29 /* FinancialDetails.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61AB1B1E44300045BE29 /* FinancialDetails.h */; };
+		94ED62AB1B20CAD80045BE29 /* SearchCharities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61B11B1E53330045BE29 /* SearchCharities.h */; };
+		94ED62AC1B20CAD80045BE29 /* ContactInfoDetails.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61B41B1E54D70045BE29 /* ContactInfoDetails.h */; };
+		94ED62AD1B20CAD80045BE29 /* DonationURL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61BD1B1E5B4A0045BE29 /* DonationURL.h */; };
+		94ED62AE1B20CAD80045BE29 /* Info.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61C01B1E5C2F0045BE29 /* Info.h */; };
+		94ED62AF1B20CAD80045BE29 /* GiveAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED61C31B1E5FF80045BE29 /* GiveAPI.h */; };
+		94ED62BF1B20CB2C0045BE29 /* CharityProject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9419FD481B18CCE900756D68 /* CharityProject.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +41,17 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				94ED62BF1B20CB2C0045BE29 /* CharityProject.h in CopyFiles */,
+				94ED62A71B20CAD80045BE29 /* ProvState.h in CopyFiles */,
+				94ED62A81B20CAD80045BE29 /* CharityFiles.h in CopyFiles */,
+				94ED62A91B20CAD80045BE29 /* CharityDetails.h in CopyFiles */,
+				94ED62AA1B20CAD80045BE29 /* FinancialDetails.h in CopyFiles */,
+				94ED62AB1B20CAD80045BE29 /* SearchCharities.h in CopyFiles */,
+				94ED62AC1B20CAD80045BE29 /* ContactInfoDetails.h in CopyFiles */,
+				94ED62AD1B20CAD80045BE29 /* DonationURL.h in CopyFiles */,
+				94ED62AE1B20CAD80045BE29 /* Info.h in CopyFiles */,
+				94ED62AF1B20CAD80045BE29 /* GiveAPI.h in CopyFiles */,
+				94ED62A61B20CAB60045BE29 /* CharitySalaries.h in CopyFiles */,
 				9458FCFF1B151A4A00E819FB /* ParseDataAPI.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +427,7 @@
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -414,6 +437,7 @@
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

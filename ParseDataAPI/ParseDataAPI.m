@@ -170,17 +170,16 @@ volatile static bool run_once_only=false;
     [url appendFormat:@"&PageNumber=%@",pageNum];
     [url appendFormat:@"&NumPerPage=%@",NumPerPage];
     
-    if(keyword != nil || keyword.length != 0)
+    if(keyword != nil && [keyword length] != 0 )
         [url appendFormat:@"&Keyword=%@",keyword];
-    if(charityType != nil || charityType.length != 0)
+    if(charityType != nil && [charityType length] != 0 )
         [url appendFormat:@"&CharityType=%@",charityType];
-    if(charitySize != nil || charitySize.length != 0)
+    if(charitySize != nil && charitySize.length != 0)
         [url appendFormat:@"&CharitySize=%@",charitySize];
-    if(country != nil || country.length != 0)
+    if(country != nil && country.length != 0)
         [url appendFormat:@"&Country=%@",country];
-    if(provState != nil || provState.length != 0)
-        [url appendFormat:@"&ProvState=%@",provState];
-    [url appendString:@"&format=json"];
+    if(provState != nil && provState.length != 0)
+        [url appendFormat:@"&ProvState=%@",provState];    [url appendString:@"&format=json"];
     
     NSData *data = [self createConnection:url];
     NSError *error=nil;
