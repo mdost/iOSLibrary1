@@ -62,7 +62,16 @@ volatile static bool run_once_only=false;
                 
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
                 NSMutableDictionary *response =[json valueForKeyPath:@"give-api.data"];
-                token = [response valueForKey:@"token"];
+                NSMutableDictionary *errorStatus =[json valueForKeyPath:@"give-api"];
+                NSString *code = [errorStatus valueForKey:@"status-code"];
+                NSString *errDescription = [errorStatus valueForKey:@"status-code-description"];
+                
+                if (![code isEqualToString:@"100"]) {
+                    token= code;
+                    [token stringByAppendingFormat:@" - %@",errDescription];
+                }else{
+                    token = [response valueForKey:@"token"];
+                }
                 
             });
         }
