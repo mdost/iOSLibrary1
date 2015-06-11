@@ -67,8 +67,8 @@ volatile static bool run_once_only=false;
                 NSString *errDescription = [errorStatus valueForKey:@"status-code-description"];
                 
                 if (![code isEqualToString:@"100"]) {
-                    token= code;
-                    [token stringByAppendingFormat:@" - %@",errDescription];
+                    token = code;
+                    token = [token stringByAppendingFormat:@" - %@",errDescription];
                 }else{
                     token = [response valueForKey:@"token"];
                 }
