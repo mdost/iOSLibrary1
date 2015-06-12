@@ -11,7 +11,6 @@
 @implementation ParseDataAPI
 
 static dispatch_once_t once;
-volatile static bool run_once_only=false;
 
 /**
  * creates a connection
@@ -30,9 +29,9 @@ volatile static bool run_once_only=false;
 -(BOOL)validateToken:(NSString *)token{
     NSRange invalidCharacters = [token rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if(run_once_only == false){
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"run_once_only"] boolValue] == false){
         NSLog(@"Please call getToken first.");
-        //        return true;
+        return true;
     }else if(token.length != 36 || token ==nil || invalidCharacters.location != NSNotFound){
         NSLog(@"token is not of correct size, or null or contains invalid characters.");
         return true;
@@ -53,8 +52,10 @@ volatile static bool run_once_only=false;
     __block NSString *token=nil;
     
     @synchronized(self){
-        if(run_once_only == false){
-            run_once_only= true;
+        NSString *callMethod = [[NSUserDefaults standardUserDefaults] objectForKey:@"run_once_only"];
+        if(![[NSUserDefaults standardUserDefaults] dictionaryForKey:@"run_once_only"] || [callMethod boolValue]!=YES){
+
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"run_once_only"];
             
             dispatch_once(&once, ^{
                 NSData *data = [self createConnection:url];
@@ -69,8 +70,10 @@ volatile static bool run_once_only=false;
                 if (![code isEqualToString:@"100"]) {
                     token = code;
                     token = [token stringByAppendingFormat:@" - %@",errDescription];
+                    _error=true;
                 }else{
                     token = [response valueForKey:@"token"];
+                    _error=false;
                 }
                 
             });
@@ -181,7 +184,7 @@ volatile static bool run_once_only=false;
     
     if(keyword != nil && [keyword length] != 0 )
         [url appendFormat:@"&Keyword=%@",keyword];
-    if(charityType != nil && [charityType length] != 0 )
+    if(charityType != nil && [charityType length] != 0)
         [url appendFormat:@"&CharityType=%@",charityType];
     if(charitySize != nil && charitySize.length != 0)
         [url appendFormat:@"&CharitySize=%@",charitySize];

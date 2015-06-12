@@ -19,6 +19,8 @@
 
 @interface ParseDataAPI : NSObject
 
+@property BOOL error;
+
 -(NSData *)createConnection:(NSMutableString *)url;
 -(NSString *)getToken:(NSString *)appid :(NSString *)appSecret;
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum;
