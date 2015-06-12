@@ -13,7 +13,9 @@
 static dispatch_once_t once;
 
 /**
- * creates a connection
+ * creates a connection to the url passed in and returns the response.
+ * @param NSMutableString * url
+ * @return NSData * data
  */
 -(NSData *)createConnection:(NSMutableString *)url{
     //create connection and retrieve data.
@@ -26,6 +28,13 @@ static dispatch_once_t once;
     return data;
 }
 
+/**
+ * Verify the token to ensure on startup of the library the method getToken() has been called.
+ * This method does error handling, it checks if the token entered is of valid length, non-empty string, and is not null.
+ * If any of these condition above are satisfied the method will return a boolean to let the user know that the token entered was incorrect.
+ * @param NSString * token
+ * @return BOOl
+ */
 -(BOOL)validateToken:(NSString *)token{
     NSRange invalidCharacters = [token rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
     
@@ -40,7 +49,15 @@ static dispatch_once_t once;
     return false;
 }
 
-//only be asked once.
+/**
+ * Returns the token for a specific APPID and APPSecret.
+ * Will only be called once on startup, it will provide the token, the user must save that token for further usage.
+ * If called again, the method will return null.
+ * If incorrect APPID or APPSecret are entered, it will return a string that will contain that status code and description of the error.
+ * @param NSString * appid
+ * @param NSString * appsecret
+ * @return NSString * token
+ */
 -(NSString *)getToken:(NSString *)appid :(NSString *)appSecret{
     if(appid == nil || appSecret ==nil)
         return nil;
@@ -83,6 +100,16 @@ static dispatch_once_t once;
     
 }
 
+/**
+ * Returns an object of type DonationURL that contains the expiration date and the donation URL.
+ * The donation URL is a unique URL that allows users the ability to make one-time donation
+ * If proper parameters are not entered the method will return an error in object of type DonationURL.
+ * The error message which is encapsulated in the object (DonationURL) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful, otherwise an error occurred.
+ * @param NSString * token
+ * @param Object of type Info *obj
+ * @return object of type DonationURL*
+ */
 -(DonationURL*)getDonationURL:(NSString *)token :(Info *)obj{
     DonationURL *errorDetails = [[DonationURL alloc] init];
     
@@ -154,6 +181,25 @@ static dispatch_once_t once;
     return du;
 }
 
+/**
+ * Search charities that are active. Returns a list of type object-SearchCharities
+ * Must enter values for token, page number, num per page.
+ * Must enter one of the values for charity size, keyword, or charity type at least.
+ * Entering values for country and provState are optional
+ * All other values that are not set, should be set as null or empty string.
+ * If proper parameters are not entered the method will return an error in a list of object of type SearchCharities. Always check first element in the list for an error.
+ * The error message which is encapsulated in the object (SearchCharities) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * PageNumber
+ * @param NSString * NumPerPage
+ * @param NSString * CharitySize
+ * @param NSString * keyword
+ * @param NSString * CharityType
+ * @param NSString * Country
+ * @param NSString * ProvState
+ * @return NSMutableArray* contains objects of type SearchCharities
+ */
 -(NSMutableArray*)searchCharities:(NSString *)token :(NSString *)pageNum :(NSString *)NumPerPage :(NSString *)charitySize :(NSString *)charityType :(NSString *)keyword :(NSString *)country :(NSString *)provState{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     SearchCharities *errorDetails =[[SearchCharities alloc] init];
@@ -216,6 +262,15 @@ static dispatch_once_t once;
     return array;
 }
 
+/**
+ * Returns financial details of a specific charity
+ * If proper parameters are not entered the method will return an error in a list of object of type FinancialDetails. Always check first element in the list for an error.
+ * The error message which is encapsulated in the object (FinancialDetails) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * regNum
+ * @return NSMutableArray * contains objects of type FinancialDetails
+ */
 -(NSMutableArray *)getFinancialDetails:(NSString *)token :(NSString *)regNum{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     FinancialDetails *errorDetails =[[FinancialDetails alloc] init];
@@ -262,6 +317,15 @@ static dispatch_once_t once;
     
 }
 
+/**
+ * Returns the details of a specific charity
+ * If proper parameters are not entered the method will return an error in object of type CharityDetails.
+ * The error message which is encapsulated in the object (CharityDetails) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * regNum
+ * @return object of type CharityDetails
+ */
 -(CharityDetails *)getCharityDetails:(NSString *)token :(NSString *)regNum{
     CharityDetails *errDetails = [[CharityDetails alloc] init];
     
@@ -295,6 +359,16 @@ static dispatch_once_t once;
     return cd;
 }
 
+/**
+ * Return a list of charity files for a specific charity.
+ * Enter registration number for a specific charity.
+ * If proper parameters are not entered the method will return an error in a list of object of type CharityFiles. Always check first element in the list for an error.
+ * The error message which is encapsulated in the object (CharityFiles) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * regNum
+ * @return NSMutableArray * contains objects of type CharityFiles
+ */
 -(NSMutableArray *)getCharityFiles:(NSString *)token :(NSString *)regNum{
     CharityProject *errorDetails =[[CharityProject alloc] init];
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -344,7 +418,13 @@ static dispatch_once_t once;
 
 
 /**
- * Return the prov state
+ * Returns a list of provinces or states according to the country entered.
+ * If proper parameters are not entered the method will return an error in a list of object of type ProvState. Always check first element in the list for an error.
+ * The error message which is encapsulated in the object (ProvState) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * country
+ * @return NSMutableArray * contains objects of type ProvState
  */
 -(NSMutableArray *)getProvState:(NSString *)token :(NSString *)country{
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -393,7 +473,14 @@ static dispatch_once_t once;
 }
 
 /**
- * Returns the project of charity
+ * Returns a list of project information that are specific to a certain charity
+ * Must enter registration number for a specific charity
+ * If proper parameters are not entered the method will return an error in a list of object of type CharityProject. Always check first element in the list for an error.
+ * The error message which is encapsulated in the object (CharityProject) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @param NSString * regNum
+ * @return NSMutableArray * contains objects of type CharityProject
  */
 -(NSMutableArray *)getCharityProject:(NSString *)token :(NSString *)regNum{
     CharityProject *errorDetails =[[CharityProject alloc] init];
@@ -444,7 +531,12 @@ static dispatch_once_t once;
 }
 
 /**
- * Returns the charity type
+ * Returns a list of available charity types
+ * If proper parameters are not entered the method will return an error in the array. Always check first element in the array for an error.
+ * The error message which is encapsulated in the NSMutableArray should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString * token
+ * @return NSMutableArray *
  */
 -(NSMutableArray *)getCharityType:(NSString *)token{
     NSMutableArray *charityTypeArray= [[NSMutableArray alloc] init];
@@ -490,7 +582,13 @@ static dispatch_once_t once;
 }
 
 /**
- * Returns an object of type CharitySalaries that contains the salaries of a specific charity found by the registrantion number (regNum)
+ * This methods gets the charity salaries for the specific charity (found by registration number), returns an object where it contains all the data.
+ * If proper parameters are not entered the method will return an error in object of type SalaryData.
+ * The error message which is encapsulated in the object (CharitySalaries) should always be checked after calling this method.
+ * If the error is 100 = it means the retrieval was successful otherwise an error occurred.
+ * @param NSString* token
+ * @param NSString* regNum
+ * @return Object of type CharitySalaries
  */
 -(CharitySalaries *)getCharitySalaries:(NSString*)token :(NSString*)regNum{
     CharitySalaries *errDetails = [[CharitySalaries alloc] init];
