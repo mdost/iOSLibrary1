@@ -116,7 +116,7 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=902;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         return errorDetails;
     }
@@ -124,7 +124,7 @@ static dispatch_once_t once;
     [url appendString:token];
     
     if (obj.amount == nil || obj.currency == nil || obj.regNum == nil || obj.backURL == nil || obj.redirectURL == nil || obj.projectType == nil) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=902;
         errorDetails.status_code_description=@"Invalid parameters. One or more parameters are missing for amount, redirectURL, backURL, projectType, regNum, or currency.";
         return errorDetails;
     }
@@ -140,7 +140,7 @@ static dispatch_once_t once;
         [url appendFormat:@"&IsAnonymous=%@",obj.isAnonymous ? @"true" : @"false"];
     }else if(obj.isAnonymous == false){
         if((obj.fname == nil || obj.fname.length==0) || (obj.lname == nil || obj.lname.length==0) || (obj.address == nil || obj.address.length==0) || (obj.city == nil || obj.city.length==0) || (obj.provState == nil || obj.provState.length==0) || (obj.country == nil || obj.country.length==0)  || (obj.email == nil || obj.email.length==0)){
-            errorDetails.status_code=200;
+            errorDetails.status_code=902;
             errorDetails.status_code_description=@"Invalid parameters. One or more parameters are missing from personal info. Make sure all personal info is filled as the donation is not anonymous.";
             return errorDetails;
             
@@ -207,17 +207,17 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=901;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         [array addObject:errorDetails];
         return array;
     }if (pageNum ==nil || pageNum.length ==0 || NumPerPage ==nil || NumPerPage.length ==0) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=902;
         errorDetails.status_code_description=@"Invalid PageNum or NumPerPage, please enter value for both parameters";
         [array addObject:errorDetails];
         return array;
     } if((charitySize == nil || charitySize.length ==0) && (charityType == nil || charityType.length ==0) && (keyword == nil || keyword.length ==0) ){
-        errorDetails.status_code=200;
+        errorDetails.status_code=902;
         errorDetails.status_code_description=@"Invalid charitySize, charityType, and keyword. Please enter a value for one of these parameters.";
         [array addObject:errorDetails];
         return array;
@@ -278,12 +278,12 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=901;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         [array addObject:errorDetails];
         return array;
     }else if (regNum ==nil || regNum.length ==0) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=102;
         errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
         [array addObject:errorDetails];
         return array;
@@ -333,11 +333,11 @@ static dispatch_once_t once;
     
     //check that the parameters are not null
     if (regNum ==nil || regNum.length ==0) {
-        errDetails.status_code=200;
+        errDetails.status_code=102;
         errDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
         return errDetails;
     }else if(verifyToken == true){
-        errDetails.status_code=200;
+        errDetails.status_code=901;
         errDetails.status_code_description=@"Invalid token. Please enter correct token.";
         return errDetails;
     }
@@ -376,12 +376,12 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=901;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         [array addObject:errorDetails];
         return array;
     }else if (regNum ==nil || regNum.length ==0) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=102;
         errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
         [array addObject:errorDetails];
         return array;
@@ -433,12 +433,12 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=901;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         [array addObject:errorDetails];
         return array;
     }else if (country ==nil || country.length ==0) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=102;
         errorDetails.status_code_description=@"Invalid country. Please enter correct country.";
         [array addObject:errorDetails];
         return array;
@@ -489,12 +489,12 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        errorDetails.status_code=200;
+        errorDetails.status_code=901;
         errorDetails.status_code_description=@"Invalid token. Please enter correct token.";
         [charityProject addObject:errorDetails];
         return charityProject;
     }else if (regNum ==nil || regNum.length ==0) {
-        errorDetails.status_code=200;
+        errorDetails.status_code=102;
         errorDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
         [charityProject addObject:errorDetails];
         return charityProject;
@@ -543,7 +543,7 @@ static dispatch_once_t once;
     bool verifyToken = [self validateToken:token];
     
     if(verifyToken == true){
-        [charityTypeArray addObject:@"200"];
+        [charityTypeArray addObject:@"901"];
         [charityTypeArray addObject:@"Invalid token, please enter correct token."];
         return charityTypeArray;
         
@@ -597,11 +597,11 @@ static dispatch_once_t once;
     
     //check that the parameters are not null
     if (regNum ==nil || regNum.length ==0) {
-        errDetails.status_code=200;
+        errDetails.status_code=102;
         errDetails.status_code_description=@"Invalid regNum. Please enter correct regNum.";
         return errDetails;
     }else if(verifyToken == true){
-        errDetails.status_code=200;
+        errDetails.status_code=901;
         errDetails.status_code_description=@"Invalid token. Please enter correct token.";
         return errDetails;
     }
